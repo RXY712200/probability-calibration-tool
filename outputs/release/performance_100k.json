@@ -1,0 +1,115 @@
+{
+  "root": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k",
+  "timings_seconds": {
+    "fixture": 13.690180699999473,
+    "invariant_inspection": 2.3042390999999043,
+    "stats_validation_and_rebuild": 1.0043134999996255,
+    "startup_including_repair_and_daily": 5.578913800000009,
+    "maintenance": 0.0013861999996152008,
+    "calculate": 1.1344979000004969,
+    "complete": 0.030153000001519104,
+    "large_online_backup": 2.2350643999998283
+  },
+  "memory": {
+    "before": {
+      "working_set_bytes": 99168256,
+      "peak_working_set_bytes": 99168256,
+      "private_bytes": 1620922368
+    },
+    "after_invariants": {
+      "working_set_bytes": 104218624,
+      "peak_working_set_bytes": 605573120,
+      "private_bytes": 1626648576
+    },
+    "before_calculate": {
+      "working_set_bytes": 108752896,
+      "peak_working_set_bytes": 606760960,
+      "private_bytes": 1630183424
+    },
+    "repeated_invariants_after_gc": [
+      {
+        "working_set_bytes": 112746496,
+        "peak_working_set_bytes": 607383552,
+        "private_bytes": 1633628160
+      },
+      {
+        "working_set_bytes": 112914432,
+        "peak_working_set_bytes": 607817728,
+        "private_bytes": 1634156544
+      },
+      {
+        "working_set_bytes": 113483776,
+        "peak_working_set_bytes": 607817728,
+        "private_bytes": 1635512320
+      }
+    ],
+    "final": {
+      "working_set_bytes": 114757632,
+      "peak_working_set_bytes": 607817728,
+      "private_bytes": 1637269504
+    }
+  },
+  "fixture": {
+    "rounds": 100000,
+    "snapshots": 100000,
+    "wins": 70000,
+    "losses": 30000,
+    "character_id": 1,
+    "regime_id": "regime-1-1",
+    "last_included_round_id": "00ffffff-ffff-4fff-bfff-fffffffe7961"
+  },
+  "initial_integrity": {
+    "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k\\data\\probability.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 100000,
+    "snapshots": 100000,
+    "pending": 0,
+    "completed": 100000
+  },
+  "stats_rebuilt": {
+    "character_id": 1,
+    "regime_id": "regime-1-1",
+    "included_games": 100000,
+    "wins": 70000,
+    "losses": 30000,
+    "last_included_round_id": "00ffffff-ffff-4fff-bfff-fffffffe7961",
+    "updated_at": "2026-08-31 05:17:16.957429+00:00",
+    "stats_version": 1
+  },
+  "prediction_sample_size": 100000,
+  "eligible_after_completion": 100001,
+  "frozen_snapshot_unchanged": true,
+  "backup_integrity": {
+    "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k\\backups\\recent\\recent_20260831T051721.818104Z_dfdebfd4-30ad-47e0-8f50-8a4f1c3a0997.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 100001,
+    "snapshots": 100001,
+    "pending": 0,
+    "completed": 100001
+  },
+  "repeated_invariant_seconds": [
+    2.3065307999986544,
+    2.2495197000007465,
+    2.2406726999997773
+  ],
+  "final_integrity": {
+    "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k\\data\\probability.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 100001,
+    "snapshots": 100001,
+    "pending": 0,
+    "completed": 100001
+  }
+}

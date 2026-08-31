@@ -1,0 +1,26 @@
+{
+  "database": {
+    "path": "C:\\Users\\rxy71\\AppData\\Local\\Temp\\PCT Phase7B Workflow 125 a36bd434-081b-4a95-81b9-85a7ec87f476\\ProbabilityCalibrationTool\\data\\probability.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 2,
+    "snapshots": 2,
+    "pending": 0,
+    "completed": 1
+  },
+  "recent": {
+    "path": "C:\\Users\\rxy71\\AppData\\Local\\Temp\\PCT Phase7B Workflow 125 a36bd434-081b-4a95-81b9-85a7ec87f476\\ProbabilityCalibrationTool\\backups\\recent\\recent_20260831T071904.755998Z_d40b682a-153e-461f-a81f-f36579d9b2d0.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 2,
+    "snapshots": 2,
+    "pending": 0,
+    "completed": 1
+  }
+}

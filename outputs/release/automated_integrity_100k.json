@@ -1,0 +1,26 @@
+{
+  "database": {
+    "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k\\data\\probability.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 100001,
+    "snapshots": 100001,
+    "pending": 0,
+    "completed": 100001
+  },
+  "recent": {
+    "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\work\\phase7a-perf-100k\\backups\\recent\\recent_20260831T051721.818104Z_dfdebfd4-30ad-47e0-8f50-8a4f1c3a0997.db",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 1,
+    "rounds": 100001,
+    "snapshots": 100001,
+    "pending": 0,
+    "completed": 100001
+  }
+}

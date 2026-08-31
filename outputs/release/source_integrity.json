@@ -1,0 +1,723 @@
+{
+  "baseline_file_count": 162,
+  "accepted_source_test_spec_preserved": 159,
+  "changes": [
+    {
+      "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\pyproject.toml",
+      "before": "A4D822298E4AEFCA17EC8B01C54042B7D066D1802F0D1681A6DA6C6C0AD1CE33",
+      "after": "D4CEB0A37136942917DE80AA8940F9F60F4E6DFC16E276060A2C5F7C696654E6"
+    },
+    {
+      "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\uv.lock",
+      "before": "AECFA8FA2FF72A5EB8F88F16E43BF37FFCC29504420BEB8FF087D284A6EC7193",
+      "after": "CBA8022E7E8A309A6436ED0667D4D78D4907EC82030676E7183211CF2C072A58"
+    },
+    {
+      "path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\.gitignore",
+      "before": "061830DEC9FF45907398D094D179F71C9FBC1838A30F0F869B43DCCB98A87D7D",
+      "after": "4525D18B14D147A5804EA5F1E4788654A7887CBBFEFDFD5922EA842FA648C56D"
+    }
+  ],
+  "final_tested_source": [
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\__init__.py",
+      "Hash": "3B774FECEA1386DBB3C0E72BC493032020EB2F9E2AE5683B4F00C307828FC757"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\__main__.py",
+      "Hash": "65B5E2A53A73CF5C241AD0025C1F5239EC73DD95423BFAC0B8440F26D75B5F9D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\bootstrap.py",
+      "Hash": "AFF125E4602B6052024A2C6F361497413A10EFFE601CFE64AD9EECDCA4862524"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\desktop_host.py",
+      "Hash": "07A29F93B4732DC5BF98A6E440384BBF64AD20BDD4F46BADDE85956AD6024765"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\__init__.py",
+      "Hash": "AD8C48B872BEEA56DC3BFA9E0F97CA8BF8F1479F3B6C60A93928C495D935CC60"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\_checks.py",
+      "Hash": "09A697F76C981B9E26579736841CCE22F1522749B851C1DD94FA285F9363B6E2"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\_view_builder.py",
+      "Hash": "18278194599796E8478B0D86BAFCB616D99F219CBF34A306566C93E41EF4262C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\analysis_builder.py",
+      "Hash": "668E4F4572F013E3E9EF27BB76FC5F927A00FD2A4655B6EE4D175F21E5B5CEED"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\backup_catalog_service.py",
+      "Hash": "CCAFD708687FEE8B37D16291CDAD11FA126A01F851A063401C73CA09767C06D2"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\commands.py",
+      "Hash": "52437B2531E2BCE2948607708BB24420C64A1C8E3C1AD67F7DD44C72F3FA0038"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\correction_query_service.py",
+      "Hash": "301FA8A91F73F1024CA03C85287D0F045CEB2E744587DC2F51FB09D6F3905BC5"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\correction_service.py",
+      "Hash": "D59785A8E58DE811A7AA8D94A9AEEC2770DC1E4088ABD28DBB01D66DD89D6993"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\desktop_session.py",
+      "Hash": "4BB884A85EB162596B475E1FAD1C244B068A8BAFD4DBD49511BB5E2463E8E519"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\enums.py",
+      "Hash": "9E3926571E989AE10A31B0E7393D85112FA31EA4F4F1AE20470C032242E7633A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\errors.py",
+      "Hash": "16B4F7A6C0ECFB81F1476F3D5E0C1BDE8D7E0E49C933E7AAB9B2A461DD8A26E0"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\integrated_round_actions.py",
+      "Hash": "AF63BA35ABAAE117AF88E6BA8EC56343D90B6951025FEFF3BFB414612DC3FFB1"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\invariant_service.py",
+      "Hash": "1FF56FC6B635F7BC1A6A9100FE096E4895CCF2A39AC829C418E644ABA26ACD84"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\maintenance_service.py",
+      "Hash": "52B189DE9ED19F92C2523570DA505D60E8F8DFFEBBF62A1AC4946A24538A4E32"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\migration_service.py",
+      "Hash": "2DCA68BA037CD1D9D0A5C7C1B2962A1D8F1E818DA3A6AB7102DCEB40D6FD4D24"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\ports.py",
+      "Hash": "3325B8B9C671C4C1C4300FD5144566326D179E804891A5C39897963773EE52D5"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\recovery_service.py",
+      "Hash": "6302BC1E5A52C1CB2A56E2F13C23D3EFF2F337C4BDA4FF83986ED6341F5DF2CE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\regime_service.py",
+      "Hash": "495C78FE938827343124BFC29B79AEB8F10F3A2CFA7053A109E802658A69BA43"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\reliability_views.py",
+      "Hash": "90915E898B462763A515A324AA6CC2AD3E7F7EAC722920535E73D1FA08044EB1"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\restore_service.py",
+      "Hash": "740769D552BB1695969BF1EC4C3812C284D1298C50B19FF5EFB0B7F895E55653"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\round_service.py",
+      "Hash": "C7BF4817A2F24F3FDB2DE08C1D56722C2CDDE8013EED94D40C9D3BBD9AD17601"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\runtime_context.py",
+      "Hash": "106241379A5A1661093A062D604EAAD3270E5E9D358FFB829D3FE4F93B7585BC"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\startup_service.py",
+      "Hash": "638544939FFDDBEB83FA9B3BC3B67666FFC09E555A2477230A3791C9BCEF82A2"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\stats_validation_service.py",
+      "Hash": "B8CE77DC4B4680D6C0EE0959FAC4FE32F8F09882E908F14C53E6779938607B46"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\views.py",
+      "Hash": "9CE0F0628380736A28CC4D3FE055BC87FAD6D2FFCB90CB138582578A542CE66E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\application\\workflow.py",
+      "Hash": "498B9642DC34115B2AEB2C91B6DC5F8C38EFA88E04FE54F2044090276F0A5023"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\__init__.py",
+      "Hash": "0FB74B030F75AF68936265093F4C903C4882700B6C9A8483C23BCE032B50E35C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\errors.py",
+      "Hash": "DC9EBDB5F2940EAFCCF3CAC33D87C3F08AE4CF592E369EAA946B10144113E7FD"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\ev.py",
+      "Hash": "55BA0DA3A337C9AB767FD1349F7D196E304A5FCEBF16604B49A82986E3ABB6CE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\historical.py",
+      "Hash": "5D6489C730E2978FB0489246F0CF75C946434558DF811BA22D09970819D4E773"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\model_specs.py",
+      "Hash": "DBD749B38B392C2D8F8CC93F8E43D1A5F9C6AE1DD139A6ACA5BB77B4EFED38FF"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\subjective.py",
+      "Hash": "2C20421C7FE0AB49DF978A62BF009BA062A5164484A28E34A966F51B025A1D61"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\core\\validation.py",
+      "Hash": "AEBE2E664D27A20F9F02A1A91A0D90458EE6DC7E70432CDA03E9E803D067C70D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\domain\\__init__.py",
+      "Hash": "A9ACAE17AD3D164FD95B5B7B9E14B32CCC368E6540BAE25E057C11F5D2B807FE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\domain\\dto.py",
+      "Hash": "AEB3FBD4A2E39C8A3E0B9B0731C602F333BB3D9C59A69A5D9FB2BB159669CC19"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\domain\\enums.py",
+      "Hash": "0D70AF7E1B966A2058B2D02E01FD0C48F0624A0F2B1088BE0FF475C2F977F955"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\domain\\records.py",
+      "Hash": "F30BE08B2B7FFCF3B97477D6FF713E51931020B94F29422312B5420378E4638E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\__init__.py",
+      "Hash": "B48FAE0937BE8CC582E03B880193FE88E66B7E97FD6257BA2FD1C71888C957CA"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\backup.py",
+      "Hash": "F8338B1A3575B972F2FF382B5E65D6703C531F5B9014EA1BF1AD1A35AF25E544"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\error_reporting.py",
+      "Hash": "AA1B111C48F8CEF626F5A558D6B911E149093ED08CCDA469F911ABCF03E163DC"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\logging_setup.py",
+      "Hash": "4558E34C058F28EAE18F99E6D8FBD2BFBF06A83F2B7B18584612B77CAF276653"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\paths.py",
+      "Hash": "C25AB0BC8DA14E3B37A2D082D7EE477882D0CD6D4847A3E7545E13ABDACE6642"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\restore_engine.py",
+      "Hash": "818AC346A32CA485D6C04542E8C7447894461F9586FA09D4696818BEE0351AEB"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\runtime_lock.py",
+      "Hash": "35996F98389BA02576AF47054E3C6F8008775D4CA3946CABC8FF3E3643DD096B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\infrastructure\\sqlite_health.py",
+      "Hash": "C8924F3B34DC3A32EECFD50C522CA115905D5529D785C9814C0AD0B50339BC3E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\__init__.py",
+      "Hash": "E57F7147EBAA3FA11679590A8E26346E932FC4551D82D0AF5F2F48F63296E34D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\database.py",
+      "Hash": "09ADF826B27C376EEADDDFA54A79C38F0A8B22817F9BC33319BAC12725D824E7"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\errors.py",
+      "Hash": "41F9DD738E8A5EE0FE39B920DAE3E7A7B6903421C1325EFDBAE1B4C737820634"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\migration_engine.py",
+      "Hash": "B8EB0270F5E967CD4E259DECCBABA2DF8436F42E52A945CA78DCF04843456B4A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\migrations.py",
+      "Hash": "7E3663B15AE39161402E4605D43F58F37D4F48B1B4B7C9787AA618EB758B8BB1"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\reliability.py",
+      "Hash": "95D2DB5C18EDFBF36268BBB9AA1DD106A4A1EEFA8B39E284F00E388290A8A71E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\schema.py",
+      "Hash": "FB457C818780A94EF62AB53A3ED02FC0779FF1C4B0001734FBD67D56486F9315"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\seed.py",
+      "Hash": "9B01FA623F6ABB7AEA8069B939AF838EB91195C8338A8230FD439621A26CB044"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\unit_of_work.py",
+      "Hash": "4EF079A2B0CE3AD3B377B5720CE3DEA5E70DBD230BFA181869840D17622BB12A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\__init__.py",
+      "Hash": "5C355D64E2D01EF0B4F2AE1FE54CACDEFA536921E1610A06575E30DB6784438A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\characters.py",
+      "Hash": "E6722D2F023FD69E0E8F7CD88EEAC1656FD9ED5D324F154CBB7BC043815B5A2C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\meta.py",
+      "Hash": "15F3B70AB14A9C9B7DA4C54C526430CD0C5C1BE9E3D18F7FE85E19D80FB88612"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\regimes.py",
+      "Hash": "A4112E06363185A009D54342E7B9EEBE54F0141C2DA41A8DAFD8FBFB131E71B8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\rounds.py",
+      "Hash": "39713F9D2748A3CCF026003394E6216531E270EE49483C43E6F064482556D013"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\snapshots.py",
+      "Hash": "850C5E0038DF741C69AE72A983AA75068CF643670923E721B485CAB7B4AE7295"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\persistence\\repositories\\stats.py",
+      "Hash": "69447F8F3E59D7FE2A7BDE8A8420C786852F22410C3F45AB6F5F584AB93F0294"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\__init__.py",
+      "Hash": "157876945D7E1968A46DDCA1CC63683CFA82F0D0133EB66AA9C09523F5E50750"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\analysis_panel.py",
+      "Hash": "E1E3B15CBCBA1D3BB4B9FA92F2C49B999581F86AD3C5A3063EB306677CFCF45B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\banners.py",
+      "Hash": "7619AF1B207CE5719DDFBB6B799C38294C7E09C09CEC5DF4131416001BCB8AC0"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\character_matrix.py",
+      "Hash": "5B8DF907BF09A5E303869089194FCFF9DF09CF803F5A0E08EDCE5D06CD7AC7C4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\close_guard.py",
+      "Hash": "15AF3E0B0A772D4F5F7FE839B5D0500160FC59C00868F59C89FE8171F18E8D6A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\correction_page.py",
+      "Hash": "82EDB58BE8A1AA50A6A6FE12418F61D0219DCD3D1B4D0409ADA7DF538B796E84"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\desktop_boundary.py",
+      "Hash": "EF7DDF1ADB904FD0DB66D36B3AC3C2B35E3B08DA3DBC8D2997B9E16FD7C62F45"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\desktop_window.py",
+      "Hash": "0884875E32D5DBC080363B024DB7B3D113895CD4B96F4FE69BAE99B8F9822949"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\formatting.py",
+      "Hash": "99D8E29091DE9ACAE9E0687869DDB8277DD31DED85BC9B4F5330B2BEFE9577FE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\main_window.py",
+      "Hash": "568D6A5AC7CBA28F32EA408799A29C60C4130DDA1D0854E85E6D9993DE246C32"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\maintenance_page.py",
+      "Hash": "32C0B264F0062A6CAA3A0C3471E1295BFD1A480BE07B8C79BF2782B3E6C011C2"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\post_run_panel.py",
+      "Hash": "F898115909A3EBD61C4F6BA250B721CFBC41AF908430B6DAAECB2B0CBD58D0E8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\pre_run_panel.py",
+      "Hash": "359C22E7639A6B62489B69E797FDDE9105412503ED6619D42633A82F30AA6A07"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\presentation.py",
+      "Hash": "C96395944022E86A8322A154321D4B9E2DCC4974D8F2C4E2BA08C44AC8B6D1CE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\recovery_page.py",
+      "Hash": "ED59345B6747C6C49AFEDA51312445203AAB7D36151FD7B0F615B4F27D85F297"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\restore_page.py",
+      "Hash": "3F17D4C52539704AF016323B2B62060FA7C87EA57A7650BEA112A13FBC0AEE1D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\round_page.py",
+      "Hash": "83F9E4BE3FD9E8F22F989286BFD720ABB25F4B27E4CB8F6160FCB6D7D371E0A6"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\safety_window.py",
+      "Hash": "99D5111E9BFA08F46D56160FA7AFEAE00F22AAE2368C6A919380E98EB9E823F1"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\startup_pages.py",
+      "Hash": "B8E095D0CFBED7643590767B1112E2A221ABC618497F3BF2E4528399DE288E02"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\src\\probability_calibration_tool\\ui\\widgets.py",
+      "Hash": "BEA118EB5D1CEA7B52F141CB5E142BD740ED62551649932F16F1C0D0E4E52DEE"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\__init__.py",
+      "Hash": "93A776D9554F3F77C26FEA38552AAD70FE6CAB09140E862B462B0B3529E6D682"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\conftest.py",
+      "Hash": "36DA1A4B85232445A2CA6D4C4B3BB42FA4C8BA28ACE5F5892203E52BA1000432"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\helpers.py",
+      "Hash": "BA8A7E7F928A620DCEDD1523EC201AFECEB409BB72FC24B573EE147CFA99C795"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_calculate.py",
+      "Hash": "5FDF005AB5F093B792CAF92712847048A234CFCBC3EF9339CAF215C813333E3B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_correction.py",
+      "Hash": "2E38601F4E3522FB5FC6BAD74FCF571FB92375131812A99A5C504F1072D18ADF"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_lifecycle.py",
+      "Hash": "71A3B81F31E57C845294999BB34B81958A0F6DCB18AAB05527A62E8EDBFFD0F8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_presentation_capabilities.py",
+      "Hash": "EFC59F7E3FF015ACAA86DCBA150251B94397C54F1623545BAC48C776FF3527DB"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_recalculate.py",
+      "Hash": "3ADF3AA6A4964CB4C3BAD7C104A0CF92F4FECA24F0280E94D2967250A80CE682"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_recovery.py",
+      "Hash": "5583E542CF27513E00DBC9D32081973E1F9E95DD978CC9AFEF4A4AB764FDD0E9"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_regime_maintenance.py",
+      "Hash": "5416AC5BF8EA3C2F2FF6F293ECCD95D6EE6532476444B642F73CB0F5B61BEB87"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_revision_lock.py",
+      "Hash": "A5037749893993E8D6786C0E65C7BC90FD8ECE915B4471C47C71A373C8696C8D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\test_workflow.py",
+      "Hash": "B98A98044F13A3F5981EFF3F1A206DE4A555AADAD82916BA9F59BA49A1B2C246"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\__init__.py",
+      "Hash": "8C8CD278DE327CFD98BB5C1101E1A9545C49D3160D0229FAA3A3626A9F6E1408"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\conftest.py",
+      "Hash": "E4CABEC60713EE3B0DDB66B8419198598CF56CDF122038427C8F7CA96CC887F8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\test_application_invariants.py",
+      "Hash": "C36C965B4BAC4E331DFC081256E8FC192297950E609A9FDDA8B97404787BF41F"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\test_restore_runtime_state.py",
+      "Hash": "471209979EB73B5F0FEC285C35853E1D5456D807D9372111F3DD27FE34CB0223"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\test_restore.py",
+      "Hash": "E26DD1915B3003CBF5DB29E8BFF02AC2257032633F843AC26ECFA8443F595A2B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\test_startup.py",
+      "Hash": "BA262818D289FCE2D593939B2230FFA5D3C89BEFEB8B125942B2458E01DF8708"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\application\\reliability\\test_stats_validation.py",
+      "Hash": "184A4ECFA66B97149EE5AA1673169FA73B3D1256AEF1F7CC16BB1B487AA3DDA0"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\__init__.py",
+      "Hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\conftest.py",
+      "Hash": "A98ADBA1EF5F6C77A26CDB0CEF037ED05627912EEF597FA55736C1DB59161305"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\helpers.py",
+      "Hash": "212620CD24E9F0B9402B81F628CEC6A7E5FCFB902058BC511F03631B8CAF6344"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_backup_catalog.py",
+      "Hash": "BC830258D865D0541831A462B75DAE6572668B439D8638EF9981DECE8B02D3D6"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_bootstrap.py",
+      "Hash": "A05E94562AD7AC7BBA619B82F4D5EFF55B3D5CDB11ADD8E1DAF364336A8D9651"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_compound_failure_priority.py",
+      "Hash": "72AC124FE718B635258C0B75C912F078D4B7DBF9235D74C63DA76D98D63FF836"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_confirmation_lifetime.py",
+      "Hash": "706A75C8716256E8D7F3C4F9A21D2DC61E97214261742A480011F3ACAF1986C7"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_correction_integration.py",
+      "Hash": "26C6D12C96761788FE9C1EDD8EC2AE011FFB8E3635175E7050A58CE3032C408C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_end_to_end.py",
+      "Hash": "4A36E0BB7B711E70268A7E0D87BA65CAE62A84545C8E026D9A2393685644967A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_error_boundary.py",
+      "Hash": "B97B4F38ACB529815A29A03562DB05188486D5B80F929168C48698B1781E0920"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_recent_integration.py",
+      "Hash": "FEDFA9B3FC40282724148BD10AADE807FBAFD603BA5426002DBE11CCA0BEE713"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_regime_integration.py",
+      "Hash": "058E9F1FA9D2853349836BE4ECA1BF5189B34FDE7036A81A2D584BCE77BCAFD4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_restore_session_rebuild.py",
+      "Hash": "08C1486E5B22B2804F37A7BDE65C0FDCA74E32ED5CE07C71BFEDD5BBDDE941D3"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\desktop\\test_startup_routing.py",
+      "Hash": "BE41B9791ABFB3D0669C0C26AE3C020C2A465EECABC70A2C5D62D8FC18FAFB8F"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\__init__.py",
+      "Hash": "189E0765268286C7FD9BC9729E8CDE780B8BACA390C6F7EBC2D305C39ABE726B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\conftest.py",
+      "Hash": "461B4A42A4B01D4F3657D32F83CCCECAE0C2C72DAF7CD999D1994D5B04576538"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\helpers.py",
+      "Hash": "B1C71E50F46B224E80C942C9ABD8DD7FA0A7F885EA653632C6A8E98F9D2CC139"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\test_backup.py",
+      "Hash": "CAFE36BCA19FC0770A36DAB4925F44AB544D3C2C88F344A9CAFE83D8606553A8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\test_logging.py",
+      "Hash": "9B1A3D9FC00D0FBEFBE255C9DF51AE94F4D6FB2872DAB9D305DA4A5E9C2766F2"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\test_paths.py",
+      "Hash": "26AE1F77CA09F09951AB5C78BD91AE35A6482DB6A7618CCB848BB9129EC30287"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\test_runtime_lock.py",
+      "Hash": "84DD5EF193575500A97373AA828C7DA269F10AA774A27BEE301D79FE83384BC3"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\infrastructure\\test_sqlite_health.py",
+      "Hash": "19169AF02DD5D1CA938F4FF1A5D22695499E0EE0077A44063D382C453A44C634"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\__init__.py",
+      "Hash": "9D07F99BE2B3C0B7EF72AB29A6A755CE5D261D1F7BF261D77BA53952970A497B"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\conftest.py",
+      "Hash": "C2FA55753E8EDF848BA27CD005432EE9145C1E2935981B3D5E3E82D99C810BD4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\helpers.py",
+      "Hash": "033FB29BE79FC4335C94B85EB95061CBDF6D6F333C888108608E6A13D7655B1C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_character_constraints.py",
+      "Hash": "D272DF79B4AD3711C89B31CA7475C9E0F165BA21FD290A2753044662464DA0A0"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_initialization.py",
+      "Hash": "31D2D0C262CE90A28C396AA4F021430168B24EB438D992DE543175358E433766"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_migrations_phase4.py",
+      "Hash": "9561827B4C79A46B98F79FF907708B4F8F1EDF2164AB18BEDC7C2FB4AF5CCAAF"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_mutation_primitives.py",
+      "Hash": "9F84ED6851BE4D75B16E67C50795BBFD74653D8531BD15C74C6F13E8F6203DE8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_persistence.py",
+      "Hash": "C73EA577179B6FF61D79DF1C144984FFA803B6DB3B82FB309C9A165B41516882"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_regime_constraints.py",
+      "Hash": "7DFFC0C6BA5EC6238B8178F65932E0F62B1B97692126A19F1EE8689E65DA0644"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_repositories.py",
+      "Hash": "3C8BB12C4C7B096B72BF40E91F9CE099455D6107EB7BD7A6C604BAE38F32F26A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_round_constraints.py",
+      "Hash": "E7E5B7FE7B82E63A87022DBDE8C645A1749EF6028B3EA80A447105A2C01C231A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_snapshot_constraints.py",
+      "Hash": "8E4022847498E14EB29904BAA1789881B9E0C58438BFE853AE3502CBA77147E0"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_stats_constraints.py",
+      "Hash": "8B9DF81BEC58CEFA04EC4AAD7390BDE3BC72E71C7C57EC3B8DA29555A9D3CC82"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_stats_rebuild.py",
+      "Hash": "2FCA6F80A8003BBED775FBED7A07A377DC7702BB7C2F82DA14B08BAF2D2EDE0E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\integration\\persistence\\test_unit_of_work.py",
+      "Hash": "5C6C51BBE5E30C02100A8FB3C40871B496BF285F5CCB97471A1FA28AA9371A47"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\__init__.py",
+      "Hash": "69AC41897D4A444F23926B274BE5F48993AF63636332DAC488E559E433BD18D8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\conftest.py",
+      "Hash": "08C9D1FD90321611E36FBCEB9F3D254162B76FE0679CA2923645DB42E158FD2A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\test_manual_history_fixture.py",
+      "Hash": "3366DEA697F94DC8BCEE55ED7691D5A87B41FAC0DED1A877A4B8EB0C4D70E0D6"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\test_performance_100k.py",
+      "Hash": "6F50CB6FCD925E712AA2010AE1F516164DBB28326ED4B61F02613753AF20D3B5"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\test_release_artifact.py",
+      "Hash": "DB17216C41A2861AED62DCBAD35FEEDE2671AE33BAF2326889CAD4611A1E5476"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\release\\test_release_verify.py",
+      "Hash": "2E763AE40758B20BBE3FB6A33CAA6684920F6A62BFA99A89C5048EE898EBA1B9"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\__init__.py",
+      "Hash": "F555D8D3704712AEEB8F4945A78375808C4031963477831C6D9A7C23FC6BF3E4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\conftest.py",
+      "Hash": "0945FD3F03E98536E90F7DE5182B54214147DF268DF490973CD0256AFEAEA382"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\helpers.py",
+      "Hash": "D63C5CF02EB128BE57C8CBFA471DE83A73CFA53755D35D17BC38A7E20B29C091"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_analysis_safety.py",
+      "Hash": "F5C73ACE4D008CCA4C62AAF8A2A64FDC3691F2C26A97EF3A9E6E75958F4836D8"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_architecture_formatting.py",
+      "Hash": "97ED6A7A2F3AD71F312E43D5489F26CE0AB25521F5C741239E9E0C44DD40DDBF"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_close_guard.py",
+      "Hash": "7D0F9E9C30FC3D7F38D4334240C9378B2158620CA786C997E60448D52607C623"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_dpi_structure.py",
+      "Hash": "864C6EA3D50B2C443BF1E94212B7A8301364E4B4F34E173F25DCA15764891FBF"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_maintenance.py",
+      "Hash": "4BEEBE8E4187209D14510000DA9E93E6651A00480AAE786BA5945BC887B4DC38"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_odds_combination_warning.py",
+      "Hash": "9C37B528E8587E9762315DFEEC6F68531A8DBD809F330B6B1B83A0D3BE1C1EF6"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_pre_run.py",
+      "Hash": "ED7CA534D89EE0006D535340CA32527BBF98C7E819B7A621AAD24C5013F52D40"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_recovery_ui.py",
+      "Hash": "FF4886EAADF05FD9EDD49B4A1687EFE53C2458DAE5A4C976F5B240B578E76924"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_startup_pages.py",
+      "Hash": "D5BC86FD68BB1848F8B6ACEAFD6D55A586EA4E5CEEDE60A92B24B227B5562211"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\ui\\test_workflow_contract.py",
+      "Hash": "87768B0A4E4737EC5F49577D8DFF8EA116A30B3C604218EDBC83F5815D5D4EE4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\unit\\core\\test_ev.py",
+      "Hash": "D47C2DADB5A0B479E4F96D1809536D77C09BD78CFF69E61FCDADA859F179C5CB"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\unit\\core\\test_historical.py",
+      "Hash": "D5CE02D7B4DA422CEDFE4376161DCD9838932E0442DBBA3F2E0F67DEE299193C"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\unit\\core\\test_subjective.py",
+      "Hash": "38A44757A5A3DD3B8BE83FA2F8EA195ED80A9BDDD87634308EE3EE7917D16A49"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tests\\unit\\core\\test_validation.py",
+      "Hash": "B637C09761899305383C3067EC76541350F1A943860E114A2C9D0C531A50A72E"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tools\\__init__.py",
+      "Hash": "479DBD17F45A499845F817E54D2EA8D53383BA3B293AF40D572A242A62D7370A"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tools\\packaged_smoke.py",
+      "Hash": "C4097BAD26F4EB552B1B6792B781F335D5FE87600A4E95CE5028552D8C9C7371"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tools\\prepare_manual_history.py",
+      "Hash": "C14F83D9A62C128059AF322C194E69A0867E1C4FDE4E49030258CD2C596AC177"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tools\\release_performance.py",
+      "Hash": "3DECDFB4DB15806F412E3FBDE5E1B29B2D975500E8D209695523747506866ABB"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\tools\\release_verify.py",
+      "Hash": "4B348355CD02E810666F62ED14E9812BD9DD473C9EC2FF4480C990BCA642932D"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\packaging\\ProbabilityCalibrationTool.spec",
+      "Hash": "8F9E86CE89BB16872A025A267B37C4A5208759ECF70F6C7F02830B6F95D77018"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\packaging\\pyinstaller_entry.py",
+      "Hash": "DC1837617723E93D3130719B7367D2F28EAE3C245850886D4167D4912D374638"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\SPEC_1.0.md",
+      "Hash": "AEE4EB200BEA8EC1A652A65A2076645613E6057C37D6280A9A0787CC5B040FC4"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\pyproject.toml",
+      "Hash": "D4CEB0A37136942917DE80AA8940F9F60F4E6DFC16E276060A2C5F7C696654E6"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\uv.lock",
+      "Hash": "CBA8022E7E8A309A6436ED0667D4D78D4907EC82030676E7183211CF2C072A58"
+    },
+    {
+      "Path": "C:\\Users\\rxy71\\Documents\\Codex\\2026-08-30\\files-pasted-by-the-user-probability\\.gitignore",
+      "Hash": "4525D18B14D147A5804EA5F1E4788654A7887CBBFEFDFD5922EA842FA648C56D"
+    }
+  ]
+}

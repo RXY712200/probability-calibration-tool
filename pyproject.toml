@@ -1,0 +1,24 @@
+[project]
+name = "probability-calibration-tool"
+version = "1.0.0"
+description = "Pure deterministic math core for Probability Calibration Tool 1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "PySide6>=6.8,<7",
+    "scipy>=1.16,<2",
+]
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.2,<7",
+    "pytest>=8.0",
+    "ruff>=0.12",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
