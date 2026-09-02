@@ -1,7 +1,7 @@
 from . import _view_builder
 from ._checks import pending_rounds, require_snapshot
 from .enums import RecoveryState
-from .errors import RoundNotPendingError
+from .errors import ErrorCode, RoundNotPendingError
 from .ports import UowFactory
 from .views import LockedAnalysisView, RecoveryView
 
@@ -21,7 +21,10 @@ class RecoveryService:
         with self._uow_factory() as uow:
             rows = pending_rounds(uow)
             if not rows:
-                raise RoundNotPendingError("No pending round is available for recovery.")
+                raise RoundNotPendingError(
+                    "No pending round is available for recovery.",
+                    code=ErrorCode.NO_PENDING_RECOVERY,
+                )
             record = rows[0]
             snapshot = require_snapshot(uow, record.round_id)
         # These are already durable records. No Core call, write, ID or clock is involved.

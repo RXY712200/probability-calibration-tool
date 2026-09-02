@@ -1,3 +1,4 @@
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 
 from probability_calibration_tool.application.enums import WorkflowState as S
@@ -18,8 +19,8 @@ class RoundPage(QWidget):
         self.post = PostRunPanel()
         self.completed = QWidget()
         notice = QHBoxLayout(self.completed)
-        notice.addWidget(label("Round saved successfully."), 1)
-        self.new_round = button("New Round")
+        notice.addWidget(label(QCoreApplication.translate("Round", "Round saved successfully.")), 1)
+        self.new_round = button(QCoreApplication.translate("Round", "New Round"))
         notice.addWidget(self.new_round)
         layout.addWidget(self.pre)
         layout.addWidget(self.analysis)
@@ -33,7 +34,11 @@ class RoundPage(QWidget):
         state = workflow.state
         editable = state in (S.DRAFT, S.PENDING_EDIT)
         self.pre.set_editable(editable)
-        self.pre.primary.setText("Recalculate" if state == S.PENDING_EDIT else "Calculate")
+        self.pre.primary.setText(
+            QCoreApplication.translate("Round", "Recalculate")
+            if state == S.PENDING_EDIT
+            else QCoreApplication.translate("Round", "Calculate")
+        )
         self.pre.primary.setVisible(editable)
         self.pre.primary.setEnabled(editable)
         self.pre.modify.setVisible(workflow.can_modify_prediction)
@@ -52,4 +57,8 @@ class RoundPage(QWidget):
         self.post.void.setVisible(state == S.PENDING_LOCKED and not void_confirmation)
         self.post.void_confirmation.setVisible(state == S.PENDING_LOCKED and void_confirmation)
         self.completed.setVisible(state == S.COMPLETED_NOTICE)
-        self.busy.setText("Working…" if state in (S.CALCULATING, S.COMPLETING) else "")
+        self.busy.setText(
+            QCoreApplication.translate("Round", "Working…")
+            if state in (S.CALCULATING, S.COMPLETING)
+            else ""
+        )

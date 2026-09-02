@@ -9,3 +9,4 @@ work/
 *.egg-info/
 .coverage
 htmlcov/
+outputs/localization_step7_runtime/

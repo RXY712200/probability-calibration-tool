@@ -12,6 +12,7 @@ from probability_calibration_tool.persistence.unit_of_work import UnitOfWork
 
 from .errors import (
     ApplicationInvariantError,
+    ErrorCode,
     InputValidationError,
     MultiplePendingRoundsError,
     RoundNotCompletedError,
@@ -30,22 +31,32 @@ def utc_now(clock: Clock) -> datetime:
 
 def require_bool(value: bool, field: str) -> None:
     if type(value) is not bool:
-        raise InputValidationError(field, "An explicit boolean choice is required.")
+        raise InputValidationError(
+            field, "An explicit boolean choice is required.", code=ErrorCode.BOOLEAN_REQUIRED
+        )
 
 
 def validate_reason(reason: str | None, *, required: bool = False) -> None:
     if reason is not None and not isinstance(reason, str):
-        raise InputValidationError("reason", "Reason must be text.")
+        raise InputValidationError("reason", "Reason must be text.", code=ErrorCode.REASON_TEXT)
     if required and (reason is None or not reason.strip()):
-        raise InputValidationError("reason", "A nonempty correction reason is required.")
+        raise InputValidationError(
+            "reason",
+            "A nonempty correction reason is required.",
+            code=ErrorCode.CORRECTION_REASON_REQUIRED,
+        )
 
 
 def active_regime(uow: UnitOfWork, character_id: int) -> HistoryRegimeRecord:
     if type(character_id) is not int:
-        raise InputValidationError("character_id", "Character ID must be an integer.")
+        raise InputValidationError(
+            "character_id", "Character ID must be an integer.", code=ErrorCode.CHARACTER_INTEGER
+        )
     character = uow.characters.get(character_id)
     if character is None or not character.active:
-        raise InputValidationError("character_id", "Choose an active character.")
+        raise InputValidationError(
+            "character_id", "Choose an active character.", code=ErrorCode.CHARACTER_ACTIVE
+        )
     regime = uow.regimes.get_active(character_id)
     if regime is None:
         raise ApplicationInvariantError("Active character has no active history regime.")

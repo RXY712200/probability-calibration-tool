@@ -4,7 +4,7 @@ from probability_calibration_tool.infrastructure.backup import (
     BackupService,
     SQLiteSafetyBackupAdapter,
 )
-from probability_calibration_tool.infrastructure.error_reporting import report_error
+from probability_calibration_tool.infrastructure.error_reporting import SafeErrorCode, report_error
 from probability_calibration_tool.infrastructure.restore_engine import (
     RestoreEngine,
     cleanup_temporary,
@@ -118,6 +118,9 @@ class RestoreService:
                     "Replacement requires emergency recovery."
                     if replaced
                     else "Restore did not replace the live database.",
+                    code=SafeErrorCode.RESTORE_RECOVERY_REQUIRED
+                    if replaced
+                    else SafeErrorCode.RESTORE_NOT_REPLACED,
                 ),
             )
         finally:

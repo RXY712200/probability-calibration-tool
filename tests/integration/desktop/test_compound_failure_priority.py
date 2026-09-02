@@ -1,8 +1,13 @@
 import pytest
 
 from probability_calibration_tool.application.enums import WorkflowState
-from probability_calibration_tool.application.errors import BusinessRuleError, InputValidationError
+from probability_calibration_tool.application.errors import (
+    BusinessRuleError,
+    ErrorCode,
+    InputValidationError,
+)
 from probability_calibration_tool.infrastructure.backup import BackupCategory
+from probability_calibration_tool.ui.localization import expected_error
 
 from .helpers import begin_correction, click, complete, scalar
 
@@ -163,8 +168,8 @@ def test_post_commit_render_failure_also_keeps_recent_warning_below_error(desk, 
 @pytest.mark.parametrize(
     "error",
     [
-        BusinessRuleError("Refresh unavailable."),
-        InputValidationError("reason", "Refresh input unavailable."),
+        BusinessRuleError("Refresh unavailable.", code=ErrorCode.BUSY),
+        InputValidationError("reason", "Refresh input unavailable.", code=ErrorCode.REASON_TEXT),
     ],
 )
 def test_expected_error_also_outranks_operational_warning(desk, monkeypatch, error):
@@ -179,6 +184,7 @@ def test_expected_error_also_outranks_operational_warning(desk, monkeypatch, err
     assert attempts == [BackupCategory.RECENT]
     assert errors == []
     assert desk.window.banner.property("severity") == "error"
-    assert str(error) in desk.window.banner.message.text()
+    assert expected_error(error) in desk.window.banner.message.text()
+    assert str(error) not in desk.window.banner.message.text()
     assert "Recent backup failed" in desk.window.banner.message.text()
     assert scalar(desk.path, "SELECT count(*) FROM history_regimes WHERE character_id=1") == 2

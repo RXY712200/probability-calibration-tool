@@ -142,16 +142,16 @@ def test_candidate_dtos_are_minimal_detached_and_ui_cannot_browse_old_facts(desk
     candidates = desk.session.correction_candidates()
     maintenance = desk.session.maintenance_rows()
     with desk.runtime.quiescent():
-        assert candidates[0].display_name == "Isaac"
+        assert candidates[0].character_id == 1
         assert len(maintenance) == 34
         assert candidates[0].completed_at.tzinfo is not None
         assert {f.name for f in fields(candidates[0])} == {
             "round_id",
-            "display_name",
+            "character_id",
             "completed_at",
         }
         with pytest.raises(FrozenInstanceError):
-            candidates[0].display_name = "changed"
+            candidates[0].character_id = 2
     desk.window.show_correction()
     content = text_tree(desk.window.correction)
     for forbidden in ("2.00", "3.00", "70%", "Jeffreys", "EV", "posterior", "0.92857"):

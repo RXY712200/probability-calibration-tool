@@ -44,9 +44,7 @@ def make_window(qapp, h):
     windows = []
 
     def make(workflow=None, **kwargs):
-        characters = tuple(
-            CharacterOption(v.character_id, v.display_name) for v in h.maintenance.list_characters()
-        )
+        characters = tuple(CharacterOption(v.character_id) for v in h.maintenance.list_characters())
         ports = kwargs.pop(
             "ports",
             PresentationPorts(

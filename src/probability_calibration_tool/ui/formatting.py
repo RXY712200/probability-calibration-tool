@@ -15,7 +15,3 @@ def format_odds(value: float) -> str:
 
 def format_timestamp(value, timezone=None) -> str:
     return value.astimezone(timezone).strftime("%Y-%m-%d %H:%M:%S")
-
-
-def format_label(value) -> str:
-    return value.value.replace("_", " ").capitalize()

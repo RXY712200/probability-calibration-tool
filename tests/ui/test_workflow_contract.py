@@ -61,7 +61,8 @@ def test_audit_lock_post_choices_back_and_rejected_widget_signal(window, monkeyp
     monkeypatch.setattr(window.workflow, "choose_result", reject)
     click(post.result.buttons[True])
     assert post.result.value() is False
-    assert "Rejected choice" in window.banner.message.text()
+    assert "Operation is not allowed in the current state." in window.banner.message.text()
+    assert "Rejected choice" not in window.banner.message.text()
 
 
 def test_completed_reset_and_session_only_retention(window, make_window):

@@ -1,16 +1,32 @@
 """One execution, one authoritative re-render, then errors/warnings. Never retry."""
 
+from PySide6.QtCore import QT_TRANSLATE_NOOP
+
 from probability_calibration_tool.application.errors import BusinessRuleError, InputValidationError
 from probability_calibration_tool.application.reliability_views import ReliabilityResult
+
+from .localization import (
+    error_with_id,
+    expected_error,
+    is_public_expected_error,
+    safe_error,
+    template,
+    warning_list,
+)
 
 
 class DesktopBoundary:
     def _show_error(self, message, warnings=(), *, error_id=None):
-        if error_id is not None:
-            message = f"{message} Error ID: {error_id}"
-        if warnings:
-            message += "\nWarnings:\n" + "\n".join(warnings)
         try:
+            if error_id is not None:
+                message = error_with_id(message, error_id)
+            if warnings:
+                message = template(
+                    "Errors",
+                    QT_TRANSLATE_NOOP("Errors", "%1\nWarnings:\n%2"),
+                    message,
+                    warning_list(warnings),
+                )
             self.banner.show_message(message, "error")
         except Exception:
             # The error presentation itself failed. Log once; do not recurse into rendering.
@@ -18,7 +34,18 @@ class DesktopBoundary:
 
     def _report(self, exc, warnings=()):
         safe = self.session.report_unexpected(exc)
-        self._show_error(safe.message, warnings, error_id=safe.error_id)
+        try:
+            message = safe_error(safe)
+        except Exception:
+            # Last-resort English, still one Error ID and no exception text. Never
+            # call the broken localization helper again or retry the operation.
+            self.session.runtime.logger.exception("Error localization failed: %s", safe.error_id)
+            message = (
+                QT_TRANSLATE_NOOP("Errors", "%1 Error ID: %2")
+                .replace("%1", QT_TRANSLATE_NOOP("Errors", "The operation could not be completed."))
+                .replace("%2", safe.error_id)
+            )
+        self._show_error(message, warnings)
 
     def _invoke(self, operation):
         if self._disposed or self._operation_active:
@@ -41,18 +68,18 @@ class DesktopBoundary:
         warnings = ()
         try:
             warnings = self.session.take_warnings()
-            if isinstance(failure, InputValidationError):
+            if isinstance(failure, InputValidationError) and is_public_expected_error(failure):
                 self._input_error(failure)
                 if warnings:
-                    self._show_error(str(failure), warnings)
-            elif isinstance(failure, BusinessRuleError):
-                self._show_error(str(failure), warnings)
+                    self._show_error(expected_error(failure), warnings)
+            elif isinstance(failure, BusinessRuleError) and is_public_expected_error(failure):
+                self._show_error(expected_error(failure), warnings)
             elif failure is not None:
                 self._report(failure, warnings)
             elif isinstance(result, ReliabilityResult) and result.error is not None:
-                self._show_error(result.error.message, warnings, error_id=result.error.error_id)
+                self._show_error(safe_error(result.error), warnings)
             elif warnings:
-                self.banner.show_message("\n".join(warnings), "warning")
+                self.banner.show_message(warning_list(warnings), "warning")
         except Exception as exc:  # noqa: BLE001 - report presentation failure without retry
             self._report(exc, warnings)
         return result

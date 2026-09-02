@@ -9,6 +9,8 @@ from .application.restore_service import RestoreService
 from .infrastructure.backup import BackupService
 from .infrastructure.error_reporting import report_error
 from .ui.desktop_window import DesktopWindow
+from .ui.language_dialog import startup_notice
+from .ui.localization import safe_error, warning_list
 from .ui.presentation import RecoveryPresentation
 from .ui.safety_window import SafetyWindow
 
@@ -23,6 +25,14 @@ class DesktopHost:
         self._session_factory = session_factory
         self.session = self.lease = self.window = None
         self.disposed = False
+        self.localization = None
+        self._localization_notice_considered = False
+
+    def bind_localization(self, context):
+        """Read-only process context reference, never translator lifecycle ownership."""
+        if self.localization is not None or self.window is not None:
+            raise RuntimeError("Localization must be bound once before presentation.")
+        self.localization = context
 
     def _detach(self):
         if self.lease is not None:
@@ -34,6 +44,7 @@ class DesktopHost:
     def dispose(self):
         self._detach()
         self.disposed = True
+        self.localization = None
 
     def show_initial_state(self):
         if self.disposed:
@@ -60,7 +71,7 @@ class DesktopHost:
                             "Startup recovery inspection was inconsistent."
                         )
                     recovery = RecoveryPresentation(view, self.session.recovery_preview())
-                self.window = DesktopWindow(self.session)
+                self.window = DesktopWindow(self.session, localization=self.localization)
                 if recovery is not None:
                     self.window.present_recovery(recovery)
             except Exception as exc:  # noqa: BLE001 - fail-closed startup presentation boundary
@@ -83,12 +94,23 @@ class DesktopHost:
         if result.error is not None:
             self.window.banner.show_error(result.error)
         if result.warnings:
-            prefix = (
-                ""
-                if result.error is None
-                else f"{result.error.message} Error ID: {result.error.error_id}\n"
+            prefix = "" if result.error is None else safe_error(result.error) + "\n"
+            self.window.banner.show_message(
+                prefix + warning_list(result.warnings),
+                "error" if result.error is not None else "warning",
             )
-            self.window.banner.show_message(prefix + "\n".join(result.warnings), "warning")
+        if not self._localization_notice_considered:
+            self._localization_notice_considered = True
+            # One process launch notice only; never displace safety/recovery/errors.
+            if (
+                self.localization is not None
+                and result.disposition == D.READY_DRAFT
+                and result.error is None
+                and not result.warnings
+            ):
+                notice = startup_notice(self.localization)
+                if notice:
+                    self.window.banner.show_message(notice, "warning")
 
     def _restore(self, lease, path):
         lease.require_active()

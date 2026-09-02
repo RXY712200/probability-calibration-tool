@@ -1,9 +1,11 @@
 """Startup/restore safety presentation without a business Workflow."""
 
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
 
 from .banners import BannerHost
 from .desktop_boundary import DesktopBoundary
+from .localization import expected_error, is_public_expected_error
 from .restore_page import RestorePage
 from .startup_pages import StartupSafetyPage
 
@@ -14,7 +16,11 @@ class SafetyWindow(DesktopBoundary, QMainWindow):
         self.session, self.result = session, result
         self._disposed = self._operation_active = False
         self._restore_ticket = None
-        self.setWindowTitle("Probability Calibration Tool 1.0 — Data Safety")
+        self.setWindowTitle(
+            QCoreApplication.translate(
+                "StartupSafety", "Probability Calibration Tool 1.1 — Data Safety"
+            )
+        )
         self.resize(900, 650)
         central = QWidget()
         self.setCentralWidget(central)
@@ -37,7 +43,10 @@ class SafetyWindow(DesktopBoundary, QMainWindow):
         self.banner.clear()
 
     def _input_error(self, exc):
-        self.banner.show_message(str(exc), "error")
+        if is_public_expected_error(exc):
+            self.banner.show_message(expected_error(exc), "error")
+        else:
+            self._report(exc)
 
     def _render(self):
         if self.restore_page is not None:

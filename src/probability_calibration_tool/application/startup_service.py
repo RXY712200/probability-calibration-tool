@@ -7,7 +7,7 @@ from probability_calibration_tool.infrastructure.backup import (
     BackupService,
     SQLiteSafetyBackupAdapter,
 )
-from probability_calibration_tool.infrastructure.error_reporting import report_error
+from probability_calibration_tool.infrastructure.error_reporting import WarningCode, report_error
 from probability_calibration_tool.infrastructure.logging_setup import (
     bootstrap_logger,
     close_logger,
@@ -124,7 +124,10 @@ class StartupService:
             if report.pending_count > 1:
                 runtime.unsafe_database = True
                 runtime.logger.warning("Multiple pending records; Daily backup suppressed.")
-                runtime.result = ReliabilityResult(StartupDisposition.RECOVERY_ERROR, report.issues)
+                runtime.logger.warning("Recovery inspection issues: %s", report.issues)
+                runtime.result = ReliabilityResult(
+                    StartupDisposition.RECOVERY_ERROR, (WarningCode.MULTIPLE_PENDING,)
+                )
                 return runtime
             if report.issues:
                 raise ApplicationInvariantError("; ".join(report.issues))
@@ -133,9 +136,9 @@ class StartupService:
             daily = BackupCoordinator(backup).daily()
             warnings = []
             if repairs.repaired_regime_ids:
-                warnings.append("Derived statistics were rebuilt from source records.")
+                warnings.append(WarningCode.STATS_REBUILT)
             if daily.warning is not None:
-                warnings.append(f"{daily.warning.message} Error ID: {daily.warning.error_id}")
+                warnings.append(daily.warning)
             elif daily.backup is not None:
                 warnings.extend(daily.backup.warnings)
             runtime.result = ReliabilityResult(

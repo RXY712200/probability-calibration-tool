@@ -167,7 +167,7 @@ def exercise(artifact, root=None):
             ),
         )
         wait_until(
-            process_a, lambda: "Probability Calibration Tool 1.0" in window_titles(process_a.pid)
+            process_a, lambda: "Probability Calibration Tool 1.1" in window_titles(process_a.pid)
         )
         modules = module_paths(process_a.pid)
         required = ["qwindows.dll", "Qt6Widgets.dll", "python313.dll", "sqlite3.dll"]
@@ -193,7 +193,7 @@ def exercise(artifact, root=None):
         wait_until(
             process_b, lambda: "Probability Calibration Tool" in window_titles(process_b.pid)
         )
-        assert "Probability Calibration Tool 1.0" not in window_titles(process_b.pid)
+        assert "Probability Calibration Tool 1.1" not in window_titles(process_b.pid)
         assert process_a.poll() is None
         evidence["pid_b"] = process_b.pid
         evidence["windows_b"] = window_titles(process_b.pid)

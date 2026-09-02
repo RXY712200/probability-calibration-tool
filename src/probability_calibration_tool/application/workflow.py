@@ -3,7 +3,7 @@
 from ._checks import require_bool
 from .commands import CalculateCommand
 from .enums import RecoveryState, WorkflowState
-from .errors import InvalidWorkflowTransitionError, MultiplePendingRoundsError
+from .errors import ErrorCode, InvalidWorkflowTransitionError, MultiplePendingRoundsError
 from .recovery_service import RecoveryService
 from .round_service import RoundService
 from .views import CompletionResult, LockedAnalysisView, RecoveryView, VoidResult
@@ -54,7 +54,9 @@ class Workflow:
     def calculate(self) -> LockedAnalysisView:
         self._require(WorkflowState.DRAFT, WorkflowState.PENDING_EDIT)
         if self._inputs is None:
-            raise InvalidWorkflowTransitionError("Prediction inputs have not been provided.")
+            raise InvalidWorkflowTransitionError(
+                "Prediction inputs have not been provided.", code=ErrorCode.INPUTS_MISSING
+            )
         previous_state = self._state
         self._state = WorkflowState.CALCULATING
         try:
@@ -76,7 +78,8 @@ class Workflow:
         self._require(WorkflowState.PENDING_LOCKED)
         if self._prediction_revision_locked:
             raise InvalidWorkflowTransitionError(
-                "Prediction revision is closed after result selection or recovery."
+                "Prediction revision is closed after result selection or recovery.",
+                code=ErrorCode.REVISION_CLOSED,
             )
         self._result = self._include = None
         self._state = WorkflowState.PENDING_EDIT

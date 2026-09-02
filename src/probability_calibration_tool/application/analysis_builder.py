@@ -4,13 +4,40 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from probability_calibration_tool import core
-from probability_calibration_tool.core.errors import CoreValidationError
+from probability_calibration_tool.core.errors import CoreValidationCode, CoreValidationError
 from probability_calibration_tool.domain.dto import SubjectiveEstimate
 from probability_calibration_tool.domain.records import RoundAnalysisSnapshotRecord, RoundRecord
 
 from ._checks import require_bool
 from .commands import CalculateCommand
-from .errors import InputValidationError
+from .errors import ApplicationInvariantError, ErrorCode, InputValidationError
+
+CORE_INPUT_ERRORS = {
+    CoreValidationCode.ODDS_NUMERIC: (
+        ErrorCode.ODDS_NUMERIC,
+        "Odds must be a finite numeric multiplier.",
+    ),
+    CoreValidationCode.ODDS_BINARY64: (
+        ErrorCode.ODDS_BINARY64,
+        "Odds must be representable as a finite binary64 value.",
+    ),
+    CoreValidationCode.ODDS_RANGE: (ErrorCode.ODDS_RANGE, "Odds must be finite and at least 1."),
+    CoreValidationCode.ODDS_SYNTAX: (
+        ErrorCode.ODDS_SYNTAX,
+        "Odds must use unsigned decimal notation.",
+    ),
+    CoreValidationCode.RAW_PROBABILITY: (
+        ErrorCode.RAW_PROBABILITY,
+        "Raw subjective probability must be an integer from 0 to 100.",
+    ),
+}
+
+
+def _input_failure(field, exc):
+    if exc.code not in CORE_INPUT_ERRORS:
+        raise ApplicationInvariantError("Unclassified core validation failure.") from exc
+    code, diagnostic = CORE_INPUT_ERRORS[exc.code]
+    return InputValidationError(field, diagnostic, code=code)
 
 
 @dataclass(frozen=True)
@@ -23,17 +50,19 @@ class ValidatedPrediction:
 def validate_prediction(command: CalculateCommand) -> ValidatedPrediction:
     require_bool(command.reference_history, "reference_history")
     if type(command.character_id) is not int:
-        raise InputValidationError("character_id", "Character ID must be an integer.")
+        raise InputValidationError(
+            "character_id", "Character ID must be an integer.", code=ErrorCode.CHARACTER_INTEGER
+        )
     odds = []
     for field, text in (("win_odds", command.win_odds_raw), ("lose_odds", command.lose_odds_raw)):
         try:
             odds.append(core.parse_odds_text(text))
         except CoreValidationError as exc:
-            raise InputValidationError(field, str(exc)) from exc
+            raise _input_failure(field, exc) from exc
     try:
         subjective = core.compute_subjective_estimate(command.p_h_raw)
     except CoreValidationError as exc:
-        raise InputValidationError("subjective_probability", str(exc)) from exc
+        raise _input_failure("subjective_probability", exc) from exc
     return ValidatedPrediction(subjective, *odds)
 
 

@@ -14,7 +14,7 @@ from uuid import uuid4
 
 from probability_calibration_tool.persistence.database import create_connection
 
-from .error_reporting import ErrorPresentation, report_error
+from .error_reporting import ErrorPresentation, SafeErrorCode, WarningCode, report_error
 from .paths import AppPaths
 from .sqlite_health import (
     CORE_TABLES,
@@ -50,7 +50,7 @@ class BackupEntry:
 @dataclass(frozen=True)
 class BackupResult:
     path: Path
-    warnings: tuple[str, ...] = ()
+    warnings: tuple[WarningCode, ...] = ()
     created: bool = True
 
 
@@ -208,7 +208,7 @@ class BackupService:
                     self.logger.warning("Could not remove failed backup candidate: %s", candidate)
         return BackupResult(final, self._rotate(category))
 
-    def _rotate(self, category) -> tuple[str, ...]:
+    def _rotate(self, category) -> tuple[WarningCode, ...]:
         try:
             valid = [
                 entry for entry in self.inventory(category) if entry.kind == InventoryKind.VALID
@@ -228,7 +228,7 @@ class BackupService:
         except OSError:
             message = "Backup accepted; rotation stopped safely with possible over-retention."
             self.logger.warning(message, exc_info=True)
-            return (message,)
+            return (WarningCode.BACKUP_OVER_RETENTION,)
         return ()
 
 
@@ -245,7 +245,15 @@ class BackupCoordinator:
             message = (
                 f"{category.value.capitalize()} backup failed; saved main data was not reverted."
             )
-            presentation = report_error(self.service.logger, exc, message)
+            presentation = report_error(
+                self.service.logger,
+                exc,
+                message,
+                code={
+                    BackupCategory.RECENT: SafeErrorCode.RECENT_BACKUP_FAILED,
+                    BackupCategory.DAILY: SafeErrorCode.DAILY_BACKUP_FAILED,
+                }[category],
+            )
             self.service.logger.warning("error_id=%s %s", presentation.error_id, message)
             return BackupOutcome(None, presentation)
 

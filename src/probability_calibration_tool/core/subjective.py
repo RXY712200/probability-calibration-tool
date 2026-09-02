@@ -4,7 +4,7 @@ from math import exp, log
 
 from probability_calibration_tool.domain.dto import SubjectiveEstimate
 
-from .errors import InvalidSubjectiveProbabilityError
+from .errors import CoreValidationCode, InvalidSubjectiveProbabilityError
 from .model_specs import (
     LOG_FACTOR_HIGH,
     LOG_FACTOR_LOW,
@@ -52,7 +52,8 @@ def compute_subjective_estimate(p_h_raw: int) -> SubjectiveEstimate:
     """Compute the independent subjective estimate and uncertainty interval."""
     if isinstance(p_h_raw, bool) or not isinstance(p_h_raw, int) or not 0 <= p_h_raw <= 100:
         raise InvalidSubjectiveProbabilityError(
-            "Raw subjective probability must be an integer from 0 to 100."
+            "Raw subjective probability must be an integer from 0 to 100.",
+            code=CoreValidationCode.RAW_PROBABILITY,
         )
     p_h_used = min(max(p_h_raw, 1), 99)
     probability = p_h_used / 100.0

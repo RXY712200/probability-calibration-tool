@@ -94,11 +94,11 @@ class RoundRepository:
         rows = self._connection.execute("SELECT * FROM rounds WHERE status = 'pending'")
         return [_record(row) for row in rows]
 
-    def correction_identifiers(self) -> tuple[tuple[str, str, str], ...]:
+    def correction_identifiers(self) -> tuple[tuple[str, int, str], ...]:
         """Eager, non-directional audit metadata only; never load prediction/results."""
         rows = self._connection.execute(
-            "SELECT r.round_id, c.display_name, r.completed_at "
-            "FROM rounds r JOIN characters c ON c.character_id = r.character_id "
+            "SELECT r.round_id, r.character_id, r.completed_at "
+            "FROM rounds r "
             "WHERE r.status = 'completed' ORDER BY r.completed_at DESC, r.round_id"
         ).fetchall()
         return tuple(tuple(row) for row in rows)

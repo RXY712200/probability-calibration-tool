@@ -11,7 +11,6 @@ from probability_calibration_tool.application.views import LockedAnalysisView, R
 @dataclass(frozen=True)
 class CharacterOption:
     character_id: int
-    display_name: str
 
 
 @dataclass(frozen=True)

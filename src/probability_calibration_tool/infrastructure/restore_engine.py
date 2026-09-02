@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
+from .error_reporting import WarningCode
 from .sqlite_health import SQLiteHealth, sidecars
 
 
@@ -57,7 +58,7 @@ class RestoreEngine:
             os.fsync(stream.fileno())
         os.replace(temporary, live)
 
-    def quarantine(self, live: Path, directory: Path) -> tuple[str, ...]:
+    def quarantine(self, live: Path, directory: Path) -> tuple[WarningCode, ...]:
         warnings = []
         token = str(uuid4())
         for source in (live, *sidecars(live)):
@@ -67,9 +68,7 @@ class RestoreEngine:
             try:
                 shutil.copyfile(source, target)
             except OSError:
-                warnings.append(
-                    "Damaged-file quarantine copy failed; replacement may still proceed."
-                )
+                warnings.append(WarningCode.QUARANTINE_COPY_FAILED)
                 self.logger.warning("Quarantine copy failed: %s", source, exc_info=True)
         # Isolation is mandatory even if the best-effort diagnostic copies failed.
         for source in sidecars(live):

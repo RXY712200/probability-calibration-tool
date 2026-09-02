@@ -1,8 +1,10 @@
 """Audit identifiers plus explicitly new post-run facts. No previous results."""
 
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QLineEdit, QListWidget, QVBoxLayout, QWidget
 
 from .formatting import format_timestamp
+from .localization import character_name
 from .widgets import ChoicePair, button, label
 
 
@@ -10,20 +12,43 @@ class CorrectionPage(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)
-        layout.addWidget(label("Historical Correction — post-run facts only"))
-        layout.addWidget(label("Identify a completed record by character, time and round ID."))
+        layout.addWidget(
+            label(
+                QCoreApplication.translate(
+                    "Correction", "Historical Correction — post-run facts only"
+                )
+            )
+        )
+        layout.addWidget(
+            label(
+                QCoreApplication.translate(
+                    "Correction", "Identify a completed record by character, time and round ID."
+                )
+            )
+        )
         self.candidates = QListWidget()
         layout.addWidget(self.candidates)
-        self.start = button("Correct selected record")
+        self.start = button(QCoreApplication.translate("Correction", "Correct selected record"))
         layout.addWidget(self.start)
         self.form = QWidget()
         fields = QVBoxLayout(self.form)
-        self.result = ChoicePair("Corrected result: Win", "Corrected result: Loss")
-        self.include = ChoicePair("Corrected: Include", "Corrected: Exclude")
+        self.result = ChoicePair(
+            QCoreApplication.translate("Correction", "Corrected result: Win"),
+            QCoreApplication.translate("Correction", "Corrected result: Loss"),
+        )
+        self.include = ChoicePair(
+            QCoreApplication.translate("Correction", "Corrected: Include"),
+            QCoreApplication.translate("Correction", "Corrected: Exclude"),
+        )
         self.reason = QLineEdit()
-        self.reason.setPlaceholderText("Required correction reason")
+        self.reason.setPlaceholderText(
+            QCoreApplication.translate("Correction", "Required correction reason")
+        )
         self.error = label()
-        self.confirm, self.back = button("Confirm Correction"), button("Back")
+        self.confirm, self.back = (
+            button(QCoreApplication.translate("Correction", "Confirm Correction")),
+            button(QCoreApplication.translate("Correction", "Back")),
+        )
         for widget in (self.result, self.include, self.reason, self.confirm, self.back):
             fields.addWidget(widget)
         layout.addWidget(self.form)
@@ -38,7 +63,7 @@ class CorrectionPage(QWidget):
         self.candidates.clear()
         for row in self.rows:
             self.candidates.addItem(
-                f"{row.display_name} · {format_timestamp(row.completed_at)} · {row.round_id}"
+                f"{character_name(row.character_id)} · {format_timestamp(row.completed_at)} · {row.round_id}"
             )
         self.candidates.setCurrentRow(-1)
         self.candidates.clearSelection()

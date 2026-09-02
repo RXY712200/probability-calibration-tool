@@ -1,9 +1,13 @@
 """Production adapters for accepted MainWindow; no SQL or model rules."""
 
+from PySide6.QtCore import QCoreApplication
+
 from probability_calibration_tool.application.enums import WorkflowState as S
 
 from .correction_page import CorrectionPage
 from .desktop_boundary import DesktopBoundary
+from .language_dialog import LanguageDialog
+from .localization import expected_error
 from .main_window import MainWindow
 from .presentation import CharacterOption, PresentationPorts
 from .restore_page import RestorePage
@@ -11,8 +15,9 @@ from .widgets import button
 
 
 class DesktopWindow(DesktopBoundary, MainWindow):
-    def __init__(self, session):
+    def __init__(self, session, *, localization=None):
         self.session = session
+        self.localization = localization
         self._disposed = self._extensions_ready = False
         self._regime_ticket = self._correction_ticket = self._restore_ticket = None
         self._save_armed = False
@@ -20,7 +25,7 @@ class DesktopWindow(DesktopBoundary, MainWindow):
         rows = session.maintenance_rows()
         super().__init__(
             session.workflow,
-            tuple(CharacterOption(row.character_id, row.display_name) for row in rows),
+            tuple(CharacterOption(row.character_id) for row in rows),
             ports=PresentationPorts(
                 maintenance_rows=session.maintenance_rows,
                 start_regime=session.start_regime,
@@ -32,13 +37,17 @@ class DesktopWindow(DesktopBoundary, MainWindow):
         self.stack.addWidget(self.correction)
         self.stack.addWidget(self.restore_page)
         self.correction_button, self.restore_button = (
-            button("Historical Correction"),
-            button("Restore"),
+            button(QCoreApplication.translate("AppShell", "Historical Correction")),
+            button(QCoreApplication.translate("AppShell", "Restore")),
         )
         # Add to the established right-side navigation; the character matrix never moves.
         navigation = self.round_button.parentWidget().layout().itemAt(1).layout().itemAt(0).layout()
         navigation.insertWidget(2, self.correction_button)
         navigation.insertWidget(3, self.restore_button)
+        self.language_button = button(QCoreApplication.translate("Localization", "Language…"))
+        navigation.addWidget(self.language_button)
+        self.language_button.setEnabled(localization is not None)
+        self.language_button.clicked.connect(self._choose_language)
         self.correction_button.clicked.connect(self.show_correction)
         self.restore_button.clicked.connect(self.show_restore)
         self.correction.start.clicked.connect(self._begin_correction)
@@ -54,6 +63,12 @@ class DesktopWindow(DesktopBoundary, MainWindow):
         self._extensions_ready = True
         self.render_from_workflow()
 
+    def _choose_language(self):
+        if self.localization is not None and not self._operation_active and not self.session.busy:
+            dialog = LanguageDialog(self.localization, self)
+            dialog.saved.connect(lambda message: self.banner.show_message(message, "information"))
+            dialog.exec()
+
     def _clear_errors(self):
         super()._clear_errors()
         if self._extensions_ready:
@@ -61,13 +76,13 @@ class DesktopWindow(DesktopBoundary, MainWindow):
 
     def _input_error(self, exc):
         if self._page == "correction":
-            self.correction.error.setText(str(exc))
+            self.correction.error.setText(expected_error(exc))
         elif exc.field == "character_id":
-            self.characters.error.setText(str(exc))
+            self.characters.error.setText(expected_error(exc))
         elif exc.field == "reason":
-            self.maintenance.reason_error.setText(str(exc))
+            self.maintenance.reason_error.setText(expected_error(exc))
         else:
-            self.round.pre.show_error(exc.field, str(exc))
+            self.round.pre.show_error(exc.field, expected_error(exc))
 
     def _render(self):
         MainWindow.render_from_workflow(self)
@@ -96,6 +111,7 @@ class DesktopWindow(DesktopBoundary, MainWindow):
         self.maintenance_button.setEnabled(not busy and state not in (S.RECOVERY, S.RECOVERY_ERROR))
         self.correction_button.setEnabled(admin)
         self.restore_button.setEnabled(admin)
+        self.language_button.setEnabled(self.localization is not None and not busy)
         self.correction.render(
             allowed=admin, confirming=self._correction_ticket is not None, busy=busy
         )
@@ -201,7 +217,9 @@ class DesktopWindow(DesktopBoundary, MainWindow):
                 self.correction.include.value(),
                 self.correction.reason.text(),
             )
-            self.correction.notice.setText("Correction saved.")
+            self.correction.notice.setText(
+                QCoreApplication.translate("Correction", "Correction saved.")
+            )
             self.correction.populate(self.session.correction_candidates())
             self.maintenance.populate(self.session.maintenance_rows())
 

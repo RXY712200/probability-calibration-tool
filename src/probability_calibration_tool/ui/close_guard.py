@@ -1,5 +1,6 @@
 from enum import Enum
 
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QMessageBox
 
 from probability_calibration_tool.application.enums import WorkflowState as S
@@ -26,15 +27,25 @@ def close_decision(state, choices, *, operation_active=False):
 
 def confirm_close(parent, decision):
     message = (
-        "Candidate edits will be lost. The previously committed pending prediction remains safe."
+        QCoreApplication.translate(
+            "Round",
+            "Candidate edits will be lost. The previously committed pending prediction remains safe.",
+        )
         if decision == CloseDecision.CONFIRM_EDITS
-        else "Post-run choices are not persisted. The pending prediction remains recoverable."
+        else QCoreApplication.translate(
+            "Round",
+            "Post-run choices are not persisted. The pending prediction remains recoverable.",
+        )
     )
     box = QMessageBox(parent)
-    box.setWindowTitle("Close pending round")
+    box.setWindowTitle(QCoreApplication.translate("Round", "Close pending round"))
     box.setText(message)
-    cancel = box.addButton("Cancel", QMessageBox.ButtonRole.RejectRole)
-    close = box.addButton("Close Anyway", QMessageBox.ButtonRole.AcceptRole)
+    cancel = box.addButton(
+        QCoreApplication.translate("Round", "Cancel"), QMessageBox.ButtonRole.RejectRole
+    )
+    close = box.addButton(
+        QCoreApplication.translate("Round", "Close Anyway"), QMessageBox.ButtonRole.AcceptRole
+    )
     box.setDefaultButton(cancel)
     box.exec()
     return box.clickedButton() is close

@@ -1,11 +1,13 @@
+from PySide6.QtCore import QT_TRANSLATE_NOOP, QCoreApplication
 from PySide6.QtWidgets import QFormLayout, QGroupBox, QVBoxLayout, QWidget
 
 from probability_calibration_tool.application.enums import HistoricalDisplayState as H
 from probability_calibration_tool.domain.enums import OddsCombinationStatus
 
 from .formatting import format_ev as ev
-from .formatting import format_label, format_timestamp
 from .formatting import format_probability as prob
+from .formatting import format_timestamp
+from .localization import domain_label, template, unavailable_label
 from .widgets import label
 
 
@@ -54,27 +56,27 @@ class AnalysisPanel(QWidget):
         self.edit_note = label()
         layout.addWidget(self.edit_note)
         self.subjective = AnalysisCard(
-            "Subjective Analysis",
+            QCoreApplication.translate("Analysis", "Subjective Analysis"),
             (
-                ("probability", "Probability"),
-                ("interval", "Uncertainty interval"),
-                ("win", "Win-side EV / S"),
-                ("lose", "Lose-side EV / S"),
-                ("thresholds", "Break-even thresholds"),
-                ("combination", "Odds combination"),
-                ("calculated", "Calculated locally"),
+                ("probability", QCoreApplication.translate("Analysis", "Probability")),
+                ("interval", QCoreApplication.translate("Analysis", "Uncertainty interval")),
+                ("win", QCoreApplication.translate("Analysis", "Win-side EV / S")),
+                ("lose", QCoreApplication.translate("Analysis", "Lose-side EV / S")),
+                ("thresholds", QCoreApplication.translate("Analysis", "Break-even thresholds")),
+                ("combination", QCoreApplication.translate("Analysis", "Odds combination")),
+                ("calculated", QCoreApplication.translate("Analysis", "Calculated locally")),
             ),
         )
         self.historical = AnalysisCard(
-            "Historical Analysis — independent model",
+            QCoreApplication.translate("Analysis", "Historical Analysis — independent model"),
             (
-                ("samples", "Eligible observations"),
-                ("probability", "Historical probability"),
-                ("interval", "Historical interval"),
-                ("win", "Win-side EV / posterior"),
-                ("lose", "Lose-side EV / posterior"),
-                ("relations", "Model relations"),
-                ("through", "Data through locally"),
+                ("samples", QCoreApplication.translate("Analysis", "Eligible observations")),
+                ("probability", QCoreApplication.translate("Analysis", "Historical probability")),
+                ("interval", QCoreApplication.translate("Analysis", "Historical interval")),
+                ("win", QCoreApplication.translate("Analysis", "Win-side EV / posterior")),
+                ("lose", QCoreApplication.translate("Analysis", "Lose-side EV / posterior")),
+                ("relations", QCoreApplication.translate("Analysis", "Model relations")),
+                ("through", QCoreApplication.translate("Analysis", "Data through locally")),
             ),
         )
         layout.addWidget(self.subjective)
@@ -99,8 +101,10 @@ class AnalysisPanel(QWidget):
         self.show()
         if editing:
             self.edit_note.setText(
-                "Locked analysis from the last successful calculation. "
-                "Pending edits are not reflected until Recalculate succeeds."
+                QCoreApplication.translate(
+                    "Analysis",
+                    "Locked analysis from the last successful calculation. Pending edits are not reflected until Recalculate succeeds.",
+                )
             )
             self.edit_note.show()
         subject, odds = view.subjective, view.subjective_odds
@@ -108,12 +112,12 @@ class AnalysisPanel(QWidget):
         def side_text(side):
             return (
                 f"{ev(side.ev_center)} [{ev(side.ev_min)}, {ev(side.ev_max)}] · "
-                f"{format_label(side.ev_state)}"
+                f"{domain_label(side.ev_state)}"
             )
 
         def margin(side):
             value = side.robust_margin_index
-            return "N/A" if value is None else f"{value:+.3f}"
+            return unavailable_label() if value is None else f"{value:+.3f}"
 
         self.subjective.fill(
             {
@@ -122,41 +126,74 @@ class AnalysisPanel(QWidget):
                 "win": f"{side_text(odds.win)} · S {margin(odds.win)}",
                 "lose": f"{side_text(odds.lose)} · S {margin(odds.lose)}",
                 "thresholds": (
-                    f"Win {prob(odds.break_even_win)}; loss event {prob(odds.break_even_lose_event)}; "
-                    f"loss as win-probability {prob(odds.break_even_lose_as_win_probability)}"
+                    template(
+                        "Analysis",
+                        QT_TRANSLATE_NOOP(
+                            "Analysis", "Win %1; loss event %2; loss as win-probability %3"
+                        ),
+                        prob(odds.break_even_win),
+                        prob(odds.break_even_lose_event),
+                        prob(odds.break_even_lose_as_win_probability),
+                    )
                 ),
-                "combination": format_label(odds.odds_combination_status),
+                "combination": domain_label(odds.odds_combination_status),
                 "calculated": format_timestamp(view.calculated_at),
             }
         )
         if subject.p_h_raw in (0, 100):
             self.subjective.say(
-                f"{subject.p_h_raw}% entered; {subject.p_h_used}% used for mathematical calculation."
+                template(
+                    "Analysis",
+                    QT_TRANSLATE_NOOP(
+                        "Analysis", "%1% entered; %2% used for mathematical calculation."
+                    ),
+                    subject.p_h_raw,
+                    subject.p_h_used,
+                )
             )
         if odds.odds_combination_status == OddsCombinationStatus.DOUBLE_POSITIVE_WINDOW:
             self.combination_warning.setText(
-                "Warning: Double-positive window detected. Check the input/multiplier timing."
+                QCoreApplication.translate(
+                    "Analysis",
+                    "Warning: Double-positive window detected. Check the input/multiplier timing.",
+                )
             )
             self.combination_warning.show()
         history = view.history
         messages = {
-            H.HIDDEN: "Historical reference was not requested for this prediction.",
-            H.NO_HISTORY: "No eligible history is available for the current character/regime.",
-            H.INSUFFICIENT: "Historical data is not yet sufficient for numerical reference.",
+            H.HIDDEN: QCoreApplication.translate(
+                "Analysis", "Historical reference was not requested for this prediction."
+            ),
+            H.NO_HISTORY: QCoreApplication.translate(
+                "Analysis", "No eligible history is available for the current character/regime."
+            ),
+            H.INSUFFICIENT: QCoreApplication.translate(
+                "Analysis", "Historical data is not yet sufficient for numerical reference."
+            ),
         }
         if history.state != H.VISIBLE:
             self.historical.say(messages[history.state])
             return
         self.historical.fill(
             {
-                "samples": f"Wins {history.wins}; losses {history.losses}; samples {history.sample_size}",
+                "samples": template(
+                    "Analysis",
+                    QT_TRANSLATE_NOOP("Analysis", "Wins %1; losses %2; samples %3"),
+                    history.wins,
+                    history.losses,
+                    history.sample_size,
+                ),
                 "probability": prob(history.probability),
                 "interval": f"{prob(history.lower)} – {prob(history.upper)}",
                 "win": f"{side_text(history.odds.win)} · {prob(history.odds.win.threshold_posterior_probability)}",
                 "lose": f"{side_text(history.odds.lose)} · {prob(history.odds.lose.threshold_posterior_probability)}",
                 "relations": (
-                    f"Win: {format_label(history.win_model_relation)}; "
-                    f"Loss: {format_label(history.lose_model_relation)}"
+                    template(
+                        "Analysis",
+                        QT_TRANSLATE_NOOP("Analysis", "Win: %1; Loss: %2"),
+                        domain_label(history.win_model_relation),
+                        domain_label(history.lose_model_relation),
+                    )
                 ),
                 "through": format_timestamp(history.data_through_at),
             }

@@ -1,3 +1,4 @@
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QGroupBox, QHBoxLayout, QLineEdit, QVBoxLayout, QWidget
 
 from .widgets import ChoicePair, button, label
@@ -5,10 +6,15 @@ from .widgets import ChoicePair, button, label
 
 class PostRunPanel(QGroupBox):
     def __init__(self):
-        super().__init__("Post-run")
+        super().__init__(QCoreApplication.translate("Round", "Post-run"))
         layout = QVBoxLayout(self)
-        self.result = ChoicePair("Win", "Loss")
-        self.include = ChoicePair("Include", "Exclude")
+        self.result = ChoicePair(
+            QCoreApplication.translate("Round", "Win"), QCoreApplication.translate("Round", "Loss")
+        )
+        self.include = ChoicePair(
+            QCoreApplication.translate("Round", "Include"),
+            QCoreApplication.translate("Round", "Exclude"),
+        )
         choices = QHBoxLayout()
         choices.addWidget(self.result)
         choices.addWidget(self.include)
@@ -16,21 +22,40 @@ class PostRunPanel(QGroupBox):
         self.confirmation = QWidget()
         row = QHBoxLayout(self.confirmation)
         row.setContentsMargins(0, 0, 0, 0)
-        row.addWidget(label("Save the selected result and history inclusion?"), 1)
-        self.back, self.save = button("Back"), button("Confirm Save")
+        row.addWidget(
+            label(
+                QCoreApplication.translate(
+                    "Round", "Save the selected result and history inclusion?"
+                )
+            ),
+            1,
+        )
+        self.back, self.save = (
+            button(QCoreApplication.translate("Round", "Back")),
+            button(QCoreApplication.translate("Round", "Confirm Save")),
+        )
         row.addWidget(self.back)
         row.addWidget(self.save)
         layout.addWidget(self.confirmation)
-        self.void = button("Void Pending")
+        self.void = button(QCoreApplication.translate("Round", "Void Pending"))
         layout.addWidget(self.void)
         self.void_confirmation = QWidget()
         void_layout = QVBoxLayout(self.void_confirmation)
-        void_layout.addWidget(label("Void this pending round? Its audit record will be preserved."))
+        void_layout.addWidget(
+            label(
+                QCoreApplication.translate(
+                    "Round", "Void this pending round? Its audit record will be preserved."
+                )
+            )
+        )
         self.reason = QLineEdit()
-        self.reason.setPlaceholderText("Optional reason")
+        self.reason.setPlaceholderText(QCoreApplication.translate("Round", "Optional reason"))
         void_layout.addWidget(self.reason)
         actions = QHBoxLayout()
-        self.cancel_void, self.confirm_void = button("Cancel"), button("Confirm Void")
+        self.cancel_void, self.confirm_void = (
+            button(QCoreApplication.translate("Round", "Cancel")),
+            button(QCoreApplication.translate("Round", "Confirm Void")),
+        )
         actions.addWidget(self.cancel_void)
         actions.addWidget(self.confirm_void)
         void_layout.addLayout(actions)

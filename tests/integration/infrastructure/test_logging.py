@@ -1,7 +1,7 @@
 from dataclasses import asdict
 from logging.handlers import RotatingFileHandler
 
-from probability_calibration_tool.infrastructure.error_reporting import report_error
+from probability_calibration_tool.infrastructure.error_reporting import SafeErrorCode, report_error
 from probability_calibration_tool.infrastructure.logging_setup import (
     bootstrap_logger,
     close_logger,
@@ -33,7 +33,8 @@ def test_error_id_traceback_safe_presentation_and_real_rotation(rig):
         log = rig.paths.log_file.read_text(encoding="utf-8")
         assert first.error_id != second.error_id
         assert first.error_id in log and "Traceback" in log and "private exception details" in log
-        assert set(asdict(first)) == {"message", "error_id"}
+        assert set(asdict(first)) == {"message", "error_id", "code"}
+        assert first.code == SafeErrorCode.OPERATION_FAILED
         assert "Traceback" not in str(asdict(first)) and "private" not in str(asdict(first))
         for index in range(7):
             logger.warning("generation=%s %s", index, "x" * (2 * 1024 * 1024))

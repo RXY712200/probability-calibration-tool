@@ -5,7 +5,10 @@ from PySide6.QtCore import Qt
 
 from probability_calibration_tool.application.reliability_views import ReliabilityResult
 from probability_calibration_tool.application.reliability_views import StartupDisposition as D
-from probability_calibration_tool.infrastructure.error_reporting import ErrorPresentation
+from probability_calibration_tool.infrastructure.error_reporting import (
+    ErrorPresentation,
+    SafeErrorCode,
+)
 from probability_calibration_tool.ui.presentation import BackupCandidate
 
 from .helpers import click, widget_text
@@ -42,8 +45,8 @@ def test_emergency_requires_explicit_valid_selection_and_injected_action(window,
         calls.append(candidate_id) or "Request received."
     )
     candidates = (
-        BackupCandidate("valid", "Recent", datetime(2026, 9, 1, tzinfo=UTC)),
-        BackupCandidate("corrupt", "Unavailable", datetime(2026, 9, 1, tzinfo=UTC), valid=False),
+        BackupCandidate("valid", "recent", datetime(2026, 9, 1, tzinfo=UTC)),
+        BackupCandidate("corrupt", "recent", datetime(2026, 9, 1, tzinfo=UTC), valid=False),
     )
     window.present_startup(ReliabilityResult(D.EMERGENCY_RECOVERY), candidates=candidates)
     qapp.processEvents()
@@ -65,9 +68,18 @@ def test_emergency_requires_explicit_valid_selection_and_injected_action(window,
 def test_operational_warning_does_not_claim_transaction_failed(window):
     window.present_startup(
         ReliabilityResult(
-            D.READY_DRAFT, ("Saved successfully; Recent backup could not be created.",)
+            D.READY_DRAFT,
+            (
+                ErrorPresentation(
+                    "Diagnostic is not UI authority",
+                    "backup-id",
+                    SafeErrorCode.RECENT_BACKUP_FAILED,
+                ),
+            ),
         )
     )
     assert window.stack.currentWidget() is window.round
-    assert "Saved successfully" in window.banner.message.text()
+    assert "saved main data was not reverted" in window.banner.message.text()
+    assert "backup-id" in window.banner.message.text()
+    assert "Diagnostic" not in window.banner.message.text()
     assert "Warning:" in window.banner.message.text()

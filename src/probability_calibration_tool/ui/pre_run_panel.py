@@ -1,3 +1,4 @@
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QGridLayout, QGroupBox, QHBoxLayout, QLineEdit
 
 from .widgets import ChoicePair, button, label
@@ -5,9 +6,12 @@ from .widgets import ChoicePair, button, label
 
 class PreRunPanel(QGroupBox):
     def __init__(self):
-        super().__init__("Pre-run inputs")
+        super().__init__(QCoreApplication.translate("Round", "Pre-run inputs"))
         layout = QGridLayout(self)
-        self.reference = ChoicePair("Use history", "Do not use history")
+        self.reference = ChoicePair(
+            QCoreApplication.translate("Round", "Use history"),
+            QCoreApplication.translate("Round", "Do not use history"),
+        )
         self.reference_error = label()
         layout.addWidget(self.reference, 0, 0, 1, 3)
         layout.addWidget(self.reference_error, 1, 0, 1, 3)
@@ -17,9 +21,13 @@ class PreRunPanel(QGroupBox):
         self.errors = {"reference_history": self.reference_error}
         for column, (field, title, widget) in enumerate(
             (
-                ("subjective_probability", "Subjective probability", self.probability),
-                ("win_odds", "Win odds", self.win_odds),
-                ("lose_odds", "Lose odds", self.lose_odds),
+                (
+                    "subjective_probability",
+                    QCoreApplication.translate("Round", "Subjective probability"),
+                    self.probability,
+                ),
+                ("win_odds", QCoreApplication.translate("Round", "Win odds"), self.win_odds),
+                ("lose_odds", QCoreApplication.translate("Round", "Lose odds"), self.lose_odds),
             )
         ):
             widget.setObjectName(field)
@@ -34,8 +42,8 @@ class PreRunPanel(QGroupBox):
             error = label()
             self.errors[field] = error
             layout.addWidget(error, 4, column)
-        self.primary = button("Calculate")
-        self.modify = button("Modify")
+        self.primary = button(QCoreApplication.translate("Round", "Calculate"))
+        self.modify = button(QCoreApplication.translate("Round", "Modify"))
         layout.addWidget(self.primary, 5, 1)
         layout.addWidget(self.modify, 5, 2)
         self.clear_errors()

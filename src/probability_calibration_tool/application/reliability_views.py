@@ -1,7 +1,10 @@
 from dataclasses import dataclass
 from enum import StrEnum
 
-from probability_calibration_tool.infrastructure.error_reporting import ErrorPresentation
+from probability_calibration_tool.infrastructure.error_reporting import (
+    ErrorPresentation,
+    WarningCode,
+)
 
 
 class StartupDisposition(StrEnum):
@@ -17,7 +20,7 @@ class StartupDisposition(StrEnum):
 @dataclass(frozen=True)
 class ReliabilityResult:
     disposition: StartupDisposition
-    warnings: tuple[str, ...] = ()
+    warnings: tuple[WarningCode | ErrorPresentation, ...] = ()
     error: ErrorPresentation | None = None
 
 

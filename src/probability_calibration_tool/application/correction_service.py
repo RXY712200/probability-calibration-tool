@@ -14,7 +14,7 @@ from ._checks import (
     utc_now,
     validate_reason,
 )
-from .errors import CorrectionBlockedError
+from .errors import CorrectionBlockedError, ErrorCode
 from .ports import Clock, IdGenerator, SafetyBackupPort, UowFactory
 from .views import CorrectionResult
 
@@ -55,7 +55,8 @@ class CorrectionService:
             current, current_snapshot = _correction_source(uow, round_id)
             if current != original or current_snapshot != snapshot:
                 raise CorrectionBlockedError(
-                    "Correction source changed during safety verification."
+                    "Correction source changed during safety verification.",
+                    code=ErrorCode.CONFIRMATION_EXPIRED,
                 )
             uow.rounds.update(
                 replace(

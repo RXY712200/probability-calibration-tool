@@ -1,5 +1,6 @@
 import logging
 
+from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QHBoxLayout, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
 
 from probability_calibration_tool.application.enums import RecoveryState
@@ -16,6 +17,7 @@ from probability_calibration_tool.infrastructure.error_reporting import report_e
 from .banners import BannerHost
 from .character_matrix import CharacterMatrix
 from .close_guard import CloseDecision, close_decision, confirm_close
+from .localization import expected_error, is_public_expected_error, warning_list
 from .maintenance_page import MaintenancePage
 from .presentation import PresentationPorts, calculate_command
 from .recovery_page import RecoveryPage
@@ -32,7 +34,6 @@ class MainWindow(QMainWindow):
         self.workflow = workflow
         self.ports = ports if ports is not None else PresentationPorts()
         self.close_confirmation = close_confirmation
-        self.names = {c.character_id: c.display_name for c in characters}
         # Session preferences and transient page/dialog presentation only, not business facts.
         self._session_character = self._session_reference = None
         self._input_source = object()
@@ -41,7 +42,7 @@ class MainWindow(QMainWindow):
         self._operation_active = False
         self._startup = None
         self._recovery_presentation = None
-        self.setWindowTitle("Probability Calibration Tool 1.0")
+        self.setWindowTitle("Probability Calibration Tool 1.1")
         self.resize(1100, 800)
         central = QWidget()
         self.setCentralWidget(central)
@@ -51,7 +52,10 @@ class MainWindow(QMainWindow):
         right = QVBoxLayout()
         outer.addLayout(right, 1)
         navigation = QHBoxLayout()
-        self.round_button, self.maintenance_button = button("Round"), button("Maintenance")
+        self.round_button, self.maintenance_button = (
+            button(QCoreApplication.translate("AppShell", "Round")),
+            button(QCoreApplication.translate("AppShell", "Maintenance")),
+        )
         navigation.addWidget(self.round_button)
         navigation.addWidget(self.maintenance_button)
         navigation.addStretch()
@@ -130,26 +134,34 @@ class MainWindow(QMainWindow):
         try:
             return operation()
         except InputValidationError as exc:
-            if exc.field == "character_id":
-                self.characters.error.setText(str(exc))
+            if not is_public_expected_error(exc):
+                self._show_unexpected(exc)
+            elif exc.field == "character_id":
+                self.characters.error.setText(expected_error(exc))
             elif exc.field == "reason":
-                self.maintenance.reason_error.setText(str(exc))
+                self.maintenance.reason_error.setText(expected_error(exc))
             else:
-                self.round.pre.show_error(exc.field, str(exc))
+                self.round.pre.show_error(exc.field, expected_error(exc))
         except BusinessRuleError as exc:
-            self.banner.show_message(str(exc), "error")
+            if is_public_expected_error(exc):
+                self.banner.show_message(expected_error(exc), "error")
+            else:
+                self._show_unexpected(exc)
         except Exception as exc:  # noqa: BLE001 - GUI boundary logs errors and displays safe DTOs
-            reporter = self.ports.report_unexpected
-            safe = (
-                reporter(exc)
-                if reporter is not None
-                else report_error(
-                    logging.getLogger(__name__), exc, "The operation could not be completed."
-                )
-            )
-            self.banner.show_error(safe)
+            self._show_unexpected(exc)
         finally:
             self.render_from_workflow()
+
+    def _show_unexpected(self, exc):
+        reporter = self.ports.report_unexpected
+        safe = (
+            reporter(exc)
+            if reporter is not None
+            else report_error(
+                logging.getLogger(__name__), exc, "The operation could not be completed."
+            )
+        )
+        self.banner.show_error(safe)
 
     def _calculate(self):
         pre = self.round.pre
@@ -245,7 +257,7 @@ class MainWindow(QMainWindow):
         if result.error is not None:
             self.banner.show_error(result.error)
         elif result.warnings:
-            self.banner.show_message("\n".join(result.warnings), "warning")
+            self.banner.show_message(warning_list(result.warnings), "warning")
         else:
             self.banner.clear()
         self.render_from_workflow()
@@ -330,7 +342,7 @@ class MainWindow(QMainWindow):
         )
         self.recovery.clear_sensitive_data()
         if page == self.recovery:
-            self.recovery.render(self._recovery_presentation, self.names)
+            self.recovery.render(self._recovery_presentation)
         self.maintenance.render(
             can_start=state in (S.DRAFT, S.COMPLETED_NOTICE),
             confirmation=self._regime_confirmation,

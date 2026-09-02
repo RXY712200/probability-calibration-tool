@@ -13,7 +13,7 @@ from .backup_catalog_service import BackupCatalogService
 from .correction_query_service import CorrectionQueryService
 from .correction_service import CorrectionService
 from .enums import WorkflowState
-from .errors import BusinessRuleError
+from .errors import BusinessRuleError, ErrorCode
 from .integrated_round_actions import IntegratedRoundActions
 from .maintenance_service import MaintenanceService
 from .ports import SystemClock, UUIDGenerator
@@ -25,7 +25,7 @@ from .workflow import Workflow
 
 
 class DisposedSessionError(RuntimeError):
-    pass
+    code = ErrorCode.SESSION_DISPOSED
 
 
 class GuardedWorkflow:
@@ -77,7 +77,7 @@ class RestoreSession:
     def _operation(self):
         self.require_active()
         if self.busy:
-            raise BusinessRuleError("Another operation is in progress.")
+            raise BusinessRuleError("Another operation is in progress.", code=ErrorCode.BUSY)
         self.busy = True
         try:
             yield
@@ -87,7 +87,7 @@ class RestoreSession:
     def _issue(self, kind, identity):
         self.require_active()
         if self.busy:
-            raise BusinessRuleError("Another operation is in progress.")
+            raise BusinessRuleError("Another operation is in progress.", code=ErrorCode.BUSY)
         ticket = object()
         self._tickets[kind] = (ticket, identity)
         return ticket
@@ -96,7 +96,10 @@ class RestoreSession:
         self.require_active()
         existing = self._tickets.get(kind)
         if existing is None or existing[0] is not ticket:
-            raise BusinessRuleError("Confirmation expired. Confirm the operation again.")
+            raise BusinessRuleError(
+                "Confirmation expired. Confirm the operation again.",
+                code=ErrorCode.CONFIRMATION_EXPIRED,
+            )
         del self._tickets[kind]
         return existing[1]
 
@@ -155,7 +158,9 @@ class DesktopSession(RestoreSession):
             D.READY_DRAFT,
             D.READY_RECOVERY,
         ):
-            raise BusinessRuleError("Normal operation is not available.")
+            raise BusinessRuleError(
+                "Normal operation is not available.", code=ErrorCode.NORMAL_UNAVAILABLE
+            )
 
     def can_admin(self):
         self._require_healthy()
@@ -164,14 +169,15 @@ class DesktopSession(RestoreSession):
     def _require_admin(self):
         if not self.can_admin():
             raise BusinessRuleError(
-                "Return to a healthy Draft before changing administrative data."
+                "Return to a healthy Draft before changing administrative data.",
+                code=ErrorCode.HEALTHY_DRAFT_REQUIRED,
             )
 
     def _recent(self):
         # Coordinator contains backup faults; this cannot undo a committed business operation.
         outcome = self._backups.recent()
         if outcome.warning is not None:
-            self._warnings.append(f"{outcome.warning.message} Error ID: {outcome.warning.error_id}")
+            self._warnings.append(outcome.warning)
         if outcome.backup is not None:
             self._warnings.extend(outcome.backup.warnings)
 

@@ -1,56 +1,67 @@
 from typing import ClassVar
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import QT_TRANSLATE_NOOP, QCoreApplication, Qt
 from PySide6.QtWidgets import QListWidget, QListWidgetItem, QVBoxLayout, QWidget
 
 from probability_calibration_tool.application.reliability_views import StartupDisposition as D
 
 from .formatting import format_timestamp
+from .localization import backup_category, backup_reason, safe_error
 from .widgets import button, label
 
 
 class StartupSafetyPage(QWidget):
     MESSAGES: ClassVar = {
-        D.RECOVERY_ERROR: (
-            "Multiple pending rounds require recovery attention. "
-            "Normal workflow is unavailable; no record has been selected."
+        D.RECOVERY_ERROR: QT_TRANSLATE_NOOP(
+            "StartupSafety",
+            "Multiple pending rounds require recovery attention. Normal workflow is unavailable; no record has been selected.",
         ),
-        D.UNSUPPORTED_NEWER_SCHEMA: (
-            "This database was created by a newer version of the application. "
-            "This version will not write to it."
+        D.UNSUPPORTED_NEWER_SCHEMA: QT_TRANSLATE_NOOP(
+            "StartupSafety",
+            "This database was created by a newer version of the application. This version will not write to it.",
         ),
-        D.ALREADY_RUNNING: "Probability Calibration Tool is already running.",
-        D.DATA_SAFETY_ERROR: "Normal operation cannot safely continue.",
+        D.ALREADY_RUNNING: QT_TRANSLATE_NOOP(
+            "StartupSafety", "Probability Calibration Tool is already running."
+        ),
+        D.DATA_SAFETY_ERROR: QT_TRANSLATE_NOOP(
+            "StartupSafety", "Normal operation cannot safely continue."
+        ),
     }
 
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)
         self.message, self.error = label(), label()
-        self.close_button = button("Close")
+        self.close_button = button(QCoreApplication.translate("StartupSafety", "Close"))
         layout.addWidget(self.message)
         layout.addWidget(self.error)
         layout.addWidget(self.close_button)
         layout.addStretch()
 
     def render(self, result):
-        self.message.setText(self.MESSAGES[result.disposition])
+        self.message.setText(
+            QCoreApplication.translate("StartupSafety", self.MESSAGES[result.disposition])
+        )
         self.error.clear()
         if result.error is not None:
-            self.error.setText(f"{result.error.message} Error ID: {result.error.error_id}")
+            self.error.setText(safe_error(result.error))
 
 
 class EmergencyRecoveryPage(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)
-        layout.addWidget(label("Emergency Recovery"))
-        self.message = label("Select a verified backup explicitly before requesting Restore.")
+        layout.addWidget(label(QCoreApplication.translate("Restore", "Emergency Recovery")))
+        self.message = label(
+            QCoreApplication.translate(
+                "Restore", "Select a verified backup explicitly before requesting Restore."
+            )
+        )
         layout.addWidget(self.message)
         self.candidates = QListWidget()
         layout.addWidget(self.candidates)
-        self.restore = button("Restore selected backup")
-        self.close_button = button("Close")
+        self.restore = button(QCoreApplication.translate("Restore", "Restore selected backup"))
+        self.close_button = button(QCoreApplication.translate("Restore", "Close"))
         layout.addWidget(self.restore)
         layout.addWidget(self.close_button)
         self.rows = ()
@@ -61,9 +72,13 @@ class EmergencyRecoveryPage(QWidget):
         self.candidates.clear()
         for candidate in self.rows:
             item = QListWidgetItem(
-                f"{candidate.category} · {format_timestamp(candidate.created_at)}"
-                + (f" · {candidate.reason}" if candidate.reason else "")
-                + ("" if candidate.valid else " · Unavailable")
+                f"{backup_category(candidate.category)} · {format_timestamp(candidate.created_at)}"
+                + (f" · {backup_reason(candidate.reason)}" if candidate.reason else "")
+                + (
+                    ""
+                    if candidate.valid
+                    else " · " + QCoreApplication.translate("Restore", "Unavailable")
+                )
             )
             if not candidate.valid:
                 item.setFlags(

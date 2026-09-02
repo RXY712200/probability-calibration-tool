@@ -1,6 +1,7 @@
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QCoreApplication, Qt, Signal
 from PySide6.QtWidgets import QButtonGroup, QGridLayout, QSizePolicy, QVBoxLayout, QWidget
 
+from .localization import character_name
 from .widgets import button, label
 
 
@@ -18,12 +19,12 @@ class CharacterMatrix(QWidget):
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.grid = QGridLayout()
         self.grid.setVerticalSpacing(2)
-        self.grid.addWidget(label("Normal"), 0, 0)
-        self.grid.addWidget(label("Tainted"), 0, 1)
+        self.grid.addWidget(label(QCoreApplication.translate("Characters", "Normal")), 0, 0)
+        self.grid.addWidget(label(QCoreApplication.translate("Characters", "Tainted")), 0, 1)
         for character_id in range(1, 35):
-            option = by_id[character_id]
-            widget = button(option.display_name.replace("&", "&&"))
-            widget.setAccessibleName(option.display_name)
+            name = character_name(character_id)
+            widget = button(name.replace("&", "&&"))
+            widget.setAccessibleName(name)
             widget.setCheckable(True)
             self.group.addButton(widget, character_id)
             self.buttons[character_id] = widget

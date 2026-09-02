@@ -11,7 +11,7 @@ from .ports import UowFactory
 @dataclass(frozen=True)
 class CorrectionCandidate:
     round_id: str
-    display_name: str
+    character_id: int
     completed_at: datetime
 
 
@@ -22,6 +22,6 @@ class CorrectionQueryService:
     def list_candidates(self) -> tuple[CorrectionCandidate, ...]:
         with self._factory() as uow:
             return tuple(
-                CorrectionCandidate(round_id, name, deserialize_utc(completed))
-                for round_id, name, completed in uow.rounds.correction_identifiers()
+                CorrectionCandidate(round_id, character_id, deserialize_utc(completed))
+                for round_id, character_id, completed in uow.rounds.correction_identifiers()
             )

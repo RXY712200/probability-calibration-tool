@@ -6,7 +6,7 @@ from uuid import uuid4
 
 from probability_calibration_tool.infrastructure.backup import BackupCategory, InventoryKind
 
-from .errors import BusinessRuleError
+from .errors import BusinessRuleError, ErrorCode
 
 
 @dataclass(frozen=True)
@@ -40,5 +40,7 @@ class BackupCatalogService:
     def resolve(self, candidate_id):
         self._guard()
         if candidate_id not in self._paths:
-            raise BusinessRuleError("Backup selection expired. Reload and select again.")
+            raise BusinessRuleError(
+                "Backup selection expired. Reload and select again.", code=ErrorCode.BACKUP_EXPIRED
+            )
         return self._paths[candidate_id]

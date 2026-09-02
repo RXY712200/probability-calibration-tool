@@ -1,3 +1,5 @@
+from PySide6.QtCore import QCoreApplication
+
 from .startup_pages import EmergencyRecoveryPage
 from .widgets import button, label
 
@@ -6,11 +8,20 @@ class RestorePage(EmergencyRecoveryPage):
     def __init__(self, *, emergency=False):
         super().__init__()
         self.layout().itemAt(0).widget().setText(
-            "Emergency Restore" if emergency else "Normal Restore"
+            QCoreApplication.translate("Restore", "Emergency Restore")
+            if emergency
+            else QCoreApplication.translate("Restore", "Normal Restore")
         )
-        self.refresh = button("Reload verified backups")
-        self.confirmation = label("Replace the live database with the selected verified backup?")
-        self.confirm, self.back = button("Confirm Restore"), button("Back")
+        self.refresh = button(QCoreApplication.translate("Restore", "Reload verified backups"))
+        self.confirmation = label(
+            QCoreApplication.translate(
+                "Restore", "Replace the live database with the selected verified backup?"
+            )
+        )
+        self.confirm, self.back = (
+            button(QCoreApplication.translate("Restore", "Confirm Restore")),
+            button(QCoreApplication.translate("Restore", "Back")),
+        )
         for widget in (self.refresh, self.confirmation, self.confirm, self.back):
             self.layout().addWidget(widget)
         self.close_button.setVisible(emergency)
