@@ -1,1 +1,1 @@
-"""Probability Calibration Tool pure math core."""
+"""Probability Calibration Tool application package."""
