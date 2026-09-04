@@ -2,7 +2,7 @@
 
 Status: `MANUAL ACCEPTANCE PAUSED — PENDING EXTERNAL REVIEW`
 
-This guide implements the localization-delta contract in `localization_step7_manual_checklist.md`. It supersedes the prior 212-row broad manual route without rewriting its historical reports. It does not re-certify frozen Correction, Restore, Emergency Restore, persistence, atomicity, supersession, replacement, or recovery business semantics.
+This guide implements the localization-delta contract in `manual_checklist.md`. It supersedes the prior 212-row broad manual route without rewriting its historical reports. It does not re-certify frozen Correction, Restore, Emergency Restore, persistence, atomicity, supersession, replacement, or recovery business semantics.
 
 ## 1. Safety and formal baseline
 
