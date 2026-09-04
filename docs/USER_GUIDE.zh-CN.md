@@ -8,7 +8,7 @@ Probability Calibration Tool 当前用于《The Binding of Isaac（以撒的结�
 
 本指南重点回答“怎么使用程序”，不会详细展开数学公式、数据库结构、状态机、事务语义等内部实现。
 
-如果需要了解这些内容，请参阅后续的技术参考文档。
+如果需要了解数学模型、数据库结构、Workflow、事务语义、Recovery、Historical Correction、Backup / Restore 等内部实现，请参阅 [技术参考](TECHNICAL_REFERENCE.zh-CN.md)。
 
 ## 下载、解压与第一次启动
 
