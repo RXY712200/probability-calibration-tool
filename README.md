@@ -1,8 +1,8 @@
 # Probability Calibration Tool
 
-**简体中文**
-
 一个用于《The Binding of Isaac（以撒的结合）》抖音直播间积分玩法的 Windows 本地概率记录、分析与校准工具。
+
+**快速入口：** [下载最新版本](../../releases/latest) · [普通用户：用户指南](docs/USER_GUIDE.zh-CN.md) · [开发者：开发与发布](docs/DEVELOPMENT.zh-CN.md) · [技术实现](docs/TECHNICAL_REFERENCE.zh-CN.md) · [本地化维护](docs/LOCALIZATION.zh-CN.md)
 
 > 平台：**Windows x64**  
 > 已验证环境：**Windows 11 x64**  
