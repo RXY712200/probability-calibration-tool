@@ -1,12 +1,47 @@
+# Python environment and caches
 .venv/
 __pycache__/
 *.py[cod]
-build/
-dist/
+*.egg-info/
 .pytest_cache/
 .ruff_cache/
-work/
-*.egg-info/
 .coverage
 htmlcov/
-outputs/localization_step7_runtime/
+
+# Build and packaging output
+build/
+dist/
+work/
+
+# Generated QA / release evidence
+outputs/
+
+# Application user data and SQLite files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+*.log
+settings.ini
+application.lock
+
+# Generated localization / release artifacts
+*.qm
+*.zip
+*.tmp
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# IDE / editor metadata
+.idea/
+.vscode/
+.vs/
+
+# OS metadata
+.DS_Store
+Thumbs.db
