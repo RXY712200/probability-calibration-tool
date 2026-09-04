@@ -258,7 +258,7 @@ Probability Calibration Tool 的程序内置语言为 **English**。
 - **Tab**  
   可以快速将焦点切换到当前界面的下一个可操作项。在连续填写一局的数据时，可以减少鼠标操作。
 
-更完整的界面操作、修改与重新计算、历史阶段、记录更正、恢复等功能将在用户指南中详细说明。
+更完整的界面操作、修改与重新计算、历史阶段、记录更正、恢复等功能请参阅 [用户指南](docs/USER_GUIDE.zh-CN.md)。
 
 ## 数据与隐私
 
@@ -307,7 +307,7 @@ Probability Calibration Tool 采用免安装的程序分发方式，但用户数
 
 不应只复制程序 ZIP 或 EXE，还需要另外处理自己的用户数据和备份。
 
-完整的数据备份、恢复和迁移流程将在用户指南中说明。
+完整的数据备份、恢复和迁移说明请参阅 [用户指南](docs/USER_GUIDE.zh-CN.md)。
 
 ### 隐私提示
 
@@ -317,24 +317,28 @@ Probability Calibration Tool 采用免安装的程序分发方式，但用户数
 
 ## 文档
 
-README 只提供项目概览和快速开始。更详细的信息将分别整理在以下文档中：
+README 只提供项目概览和快速开始。更详细的信息请参阅：
 
-- **用户指南**  
+- [用户指南](docs/USER_GUIDE.zh-CN.md)  
   面向普通用户，详细说明单局操作、分析结果、修改与重新计算、历史阶段、历史记录更正、未完成单局恢复、备份恢复、语言切换以及数据迁移等。
 
-- **技术参考**  
-  面向开发者和维护者，详细说明数学模型、概率计算、EV / S、历史模型、状态机、数据库结构、事务语义、恢复机制、安全约束以及兼容性规则。
+- [技术参考](docs/TECHNICAL_REFERENCE.zh-CN.md)  
+  面向开发者和维护者，详细说明数学模型、概率计算、EV / S、Historical Model、Workflow、数据库结构、事务语义、Recovery、Historical Correction、Backup / Restore、安全约束以及兼容性规则。
 
-- **本地化说明**  
-  详细说明程序的语言体系、外部 `.qm` 语言包、语言选择、回退机制以及翻译维护方法。
+- [本地化维护指南](docs/LOCALIZATION.zh-CN.md)  
+  说明 English 内置基线、外部简体中文 `.qm`、语言偏好、回退机制、restart-only 规则以及翻译维护方式。
 
-- **开发与发布**  
-  面向需要修改源码或重新构建程序的开发者，说明开发环境、从源码运行、自动化测试、语言包编译、Windows 打包以及发布流程。
+- [开发、构建与发布指南](docs/DEVELOPMENT.zh-CN.md)  
+  面向需要修改源码或重新构建程序的开发者，说明开发环境、自动化测试、本地化编译、PyInstaller、Packaged Smoke 和 Release 流程。
 
-这些文档完成后，将在此处加入对应链接。
+- [SPEC 1.0](SPEC_1.0.md)  
+  Probability Calibration Tool 1.0 的历史设计与验收基线。当前正式实现请以技术参考、源码和自动化测试共同核对。
 
-## 许可证
+- [第三方软件与许可证说明](THIRD_PARTY_NOTICES.md)  
+  说明项目使用和发行的主要第三方组件及其许可证边界。
 
-项目许可证将在正式确定后通过仓库中的 `LICENSE` 文件提供。
+## License
 
-项目所使用的第三方组件及其相关许可信息也将在完成许可证审查后统一说明。
+Probability Calibration Tool 自身项目内容采用 [MIT License](LICENSE)。
+
+第三方软件仍分别遵循其各自的许可证和版权声明，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
