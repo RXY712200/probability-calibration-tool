@@ -1,7 +1,7 @@
 [project]
 name = "probability-calibration-tool"
 version = "1.1.0"
-description = "Pure deterministic math core for Probability Calibration Tool 1.1"
+description = "Local desktop tool for probability recording, analysis, and calibration"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "PySide6>=6.8,<7",
