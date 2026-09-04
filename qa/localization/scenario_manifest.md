@@ -2,7 +2,7 @@
 
 Status: `MANUAL ACCEPTANCE NOT STARTED`
 
-The 45 prepared scenarios remain available QA infrastructure. The former checklist-ID column below is historical scenario capability/provenance only; it is not the formal Step 7 contract. Formal localization-delta routing is exclusively defined by `localization_step7_execution_guide.md` Appendix A.
+The 45 prepared scenarios remain available QA infrastructure. The former checklist-ID column below is historical scenario capability/provenance only; it is not the formal Step 7 contract. Formal localization-delta routing is exclusively defined by `execution_guide.md` Appendix A.
 
 All paths and commands are project-relative. Every production app root is exactly:
 
